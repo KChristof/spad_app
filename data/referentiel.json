@@ -1,0 +1,1725 @@
+{
+  "meta": {
+    "genereLe": "2026-07-28T17:36:29.627Z",
+    "sourceForms": [
+      "5_PNLTA_SPAD_Fiche_Femmes_Enceintes_Allaitantes_Tabac.xlsx",
+      "6_PNLTA_SPAD_Fiche_CAP_Personnel_de_Sante_Tabac.xlsx",
+      "7_PEV_SPAD_Fiche_Menage_Non_Vaccination.xlsx",
+      "8_PEV_SPAD_Fiche_Etablissement_Non_Vaccination.xlsx"
+    ]
+  },
+  "regions": [
+    {
+      "code": "INDENIE_DUABLIN",
+      "libelle": "INDENIE-DUABLIN"
+    },
+    {
+      "code": "AGNEBY_TIASSA",
+      "libelle": "AGNEBY-TIASSA"
+    },
+    {
+      "code": "ABIDJAN_1",
+      "libelle": "ABIDJAN 1"
+    },
+    {
+      "code": "GONTOUGO",
+      "libelle": "GONTOUGO"
+    },
+    {
+      "code": "BERE",
+      "libelle": "BERE"
+    },
+    {
+      "code": "GBEKE",
+      "libelle": "GBEKE"
+    },
+    {
+      "code": "HAUT_SASSANDRA",
+      "libelle": "HAUT SASSANDRA"
+    },
+    {
+      "code": "PORO",
+      "libelle": "PORO"
+    },
+    {
+      "code": "TONKPI",
+      "libelle": "TONKPI"
+    },
+    {
+      "code": "KABADOUGOU",
+      "libelle": "KABADOUGOU"
+    },
+    {
+      "code": "SAN_PEDRO",
+      "libelle": "SAN PEDRO"
+    },
+    {
+      "code": "BELIER",
+      "libelle": "BELIER"
+    }
+  ],
+  "districts": [
+    {
+      "code": "ABENGOUROU",
+      "codeId": "D01",
+      "libelle": "ABENGOUROU",
+      "regionCode": "INDENIE_DUABLIN"
+    },
+    {
+      "code": "AGBOVILLE",
+      "codeId": "D02",
+      "libelle": "AGBOVILLE",
+      "regionCode": "AGNEBY_TIASSA"
+    },
+    {
+      "code": "YOPOUGON_OUEST_SONGON",
+      "codeId": "D03",
+      "libelle": "YOPOUGON-OUEST SONGON",
+      "regionCode": "ABIDJAN_1"
+    },
+    {
+      "code": "BONDOUKOU",
+      "codeId": "D04",
+      "libelle": "BONDOUKOU",
+      "regionCode": "GONTOUGO"
+    },
+    {
+      "code": "MANKONO",
+      "codeId": "D05",
+      "libelle": "MANKONO",
+      "regionCode": "BERE"
+    },
+    {
+      "code": "BOUAKE_NORD_EST",
+      "codeId": "D06",
+      "libelle": "BOUAKE NORD-EST",
+      "regionCode": "GBEKE"
+    },
+    {
+      "code": "DALOA",
+      "codeId": "D07",
+      "libelle": "DALOA",
+      "regionCode": "HAUT_SASSANDRA"
+    },
+    {
+      "code": "SINEMATIALI",
+      "codeId": "D08",
+      "libelle": "SINEMATIALI",
+      "regionCode": "PORO"
+    },
+    {
+      "code": "MAN",
+      "codeId": "D09",
+      "libelle": "MAN",
+      "regionCode": "TONKPI"
+    },
+    {
+      "code": "ODIENNE",
+      "codeId": "D10",
+      "libelle": "ODIENNE",
+      "regionCode": "KABADOUGOU"
+    },
+    {
+      "code": "SAN_PEDRO",
+      "codeId": "D11",
+      "libelle": "SAN-PEDRO",
+      "regionCode": "SAN_PEDRO"
+    },
+    {
+      "code": "TIEBISSOU",
+      "codeId": "D12",
+      "libelle": "TIEBISSOU",
+      "regionCode": "BELIER"
+    }
+  ],
+  "enqueteurs": [
+    {
+      "code": "D01ENQ1",
+      "nom": "HIEN SIÉ ARISTIDE",
+      "libelleComplet": "ENQUETEUR ABENGOUROU N°1 — HIEN SIÉ ARISTIDE (D01ENQ1)",
+      "districtCode": "ABENGOUROU",
+      "regionCode": "INDENIE_DUABLIN"
+    },
+    {
+      "code": "D01ENQ2",
+      "nom": "KOUAME GERARD",
+      "libelleComplet": "ENQUETEUR ABENGOUROU N°2 — KOUAME GERARD (D01ENQ2)",
+      "districtCode": "ABENGOUROU",
+      "regionCode": "INDENIE_DUABLIN"
+    },
+    {
+      "code": "D01ENQ3",
+      "nom": "ADONI N'GORAN PACOME",
+      "libelleComplet": "ENQUETEUR ABENGOUROU N°3 — ADONI N'GORAN PACOME (D01ENQ3)",
+      "districtCode": "ABENGOUROU",
+      "regionCode": "INDENIE_DUABLIN"
+    },
+    {
+      "code": "D01ENQ4",
+      "nom": "MEMEL PIERRE LANDRY DONALD",
+      "libelleComplet": "ENQUETEUR ABENGOUROU N°4 — MEMEL PIERRE LANDRY DONALD (D01ENQ4)",
+      "districtCode": "ABENGOUROU",
+      "regionCode": "INDENIE_DUABLIN"
+    },
+    {
+      "code": "D02ENQ1",
+      "nom": "ABE ASSEMIAN MELAINE PARFAIT",
+      "libelleComplet": "ENQUETEUR AGBOVILLE N°1 — ABE ASSEMIAN MELAINE PARFAIT (D02ENQ1)",
+      "districtCode": "AGBOVILLE",
+      "regionCode": "AGNEBY_TIASSA"
+    },
+    {
+      "code": "D02ENQ2",
+      "nom": "KOUADIO PIERRE KOUAME",
+      "libelleComplet": "ENQUETEUR AGBOVILLE N°2 — KOUADIO PIERRE KOUAME (D02ENQ2)",
+      "districtCode": "AGBOVILLE",
+      "regionCode": "AGNEBY_TIASSA"
+    },
+    {
+      "code": "D02ENQ3",
+      "nom": "AKA JEAN MARCEL ALLOU",
+      "libelleComplet": "ENQUETEUR AGBOVILLE N°3 — AKA JEAN MARCEL ALLOU (D02ENQ3)",
+      "districtCode": "AGBOVILLE",
+      "regionCode": "AGNEBY_TIASSA"
+    },
+    {
+      "code": "D02ENQ4",
+      "nom": "OCHO ANICET ARNAUD BIENVENU",
+      "libelleComplet": "ENQUETEUR AGBOVILLE N°4 — OCHO ANICET ARNAUD BIENVENU (D02ENQ4)",
+      "districtCode": "AGBOVILLE",
+      "regionCode": "AGNEBY_TIASSA"
+    },
+    {
+      "code": "D03ENQ1",
+      "nom": "KILANKO AKISSI MAHUGNON SEPHORA",
+      "libelleComplet": "ENQUETEUR YOPOUGON_OUEST_SONGON N°1 — KILANKO AKISSI MAHUGNON SEPHORA (D03ENQ1)",
+      "districtCode": "YOPOUGON_OUEST_SONGON",
+      "regionCode": "ABIDJAN_1"
+    },
+    {
+      "code": "D03ENQ2",
+      "nom": "GERMAIN EHOUMAN KAMENAN",
+      "libelleComplet": "ENQUETEUR YOPOUGON_OUEST_SONGON N°2 — GERMAIN EHOUMAN KAMENAN (D03ENQ2)",
+      "districtCode": "YOPOUGON_OUEST_SONGON",
+      "regionCode": "ABIDJAN_1"
+    },
+    {
+      "code": "D03ENQ3",
+      "nom": "Kouassi nssieny marthe aaudrey lucie",
+      "libelleComplet": "ENQUETEUR YOPOUGON_OUEST_SONGON N°3 — Kouassi nssieny marthe aaudrey lucie (D03ENQ3)",
+      "districtCode": "YOPOUGON_OUEST_SONGON",
+      "regionCode": "ABIDJAN_1"
+    },
+    {
+      "code": "D03ENQ4",
+      "nom": "N'GUESSAN NÉE KPON KOUAKEUCLEUE CAROLINE",
+      "libelleComplet": "ENQUETEUR YOPOUGON_OUEST_SONGON N°4 — N'GUESSAN NÉE KPON KOUAKEUCLEUE CAROLINE (D03ENQ4)",
+      "districtCode": "YOPOUGON_OUEST_SONGON",
+      "regionCode": "ABIDJAN_1"
+    },
+    {
+      "code": "D04ENQ1",
+      "nom": "OUATTARA ADJOUMANI KOUAME HAMED",
+      "libelleComplet": "ENQUETEUR BONDOUKOU N°1 — OUATTARA ADJOUMANI KOUAME HAMED (D04ENQ1)",
+      "districtCode": "BONDOUKOU",
+      "regionCode": "GONTOUGO"
+    },
+    {
+      "code": "D04ENQ2",
+      "nom": "KOSSREU FRANÇOIS",
+      "libelleComplet": "ENQUETEUR BONDOUKOU N°2 — KOSSREU FRANÇOIS (D04ENQ2)",
+      "districtCode": "BONDOUKOU",
+      "regionCode": "GONTOUGO"
+    },
+    {
+      "code": "D04ENQ3",
+      "nom": "Oulou Vivien SANKAN",
+      "libelleComplet": "ENQUETEUR BONDOUKOU N°3 — Oulou Vivien SANKAN (D04ENQ3)",
+      "districtCode": "BONDOUKOU",
+      "regionCode": "GONTOUGO"
+    },
+    {
+      "code": "D04ENQ4",
+      "nom": "MAHAN BLESSON FREJUS MADOCHE",
+      "libelleComplet": "ENQUETEUR BONDOUKOU N°4 — MAHAN BLESSON FREJUS MADOCHE (D04ENQ4)",
+      "districtCode": "BONDOUKOU",
+      "regionCode": "GONTOUGO"
+    },
+    {
+      "code": "D05ENQ1",
+      "nom": "YAO KOUAME TIMOTHEE",
+      "libelleComplet": "ENQUETEUR MANKONO N°1 — YAO KOUAME TIMOTHEE (D05ENQ1)",
+      "districtCode": "MANKONO",
+      "regionCode": "BERE"
+    },
+    {
+      "code": "D05ENQ2",
+      "nom": "FAHE EMMENNUEL",
+      "libelleComplet": "ENQUETEUR MANKONO N°2 — FAHE EMMENNUEL (D05ENQ2)",
+      "districtCode": "MANKONO",
+      "regionCode": "BERE"
+    },
+    {
+      "code": "D05ENQ3",
+      "nom": "AGNIN KOUA PACOME AMANKON",
+      "libelleComplet": "ENQUETEUR MANKONO N°3 — AGNIN KOUA PACOME AMANKON (D05ENQ3)",
+      "districtCode": "MANKONO",
+      "regionCode": "BERE"
+    },
+    {
+      "code": "D05ENQ4",
+      "nom": "GUEU ZEGBE RICHMOND",
+      "libelleComplet": "ENQUETEUR MANKONO N°4 — GUEU ZEGBE RICHMOND (D05ENQ4)",
+      "districtCode": "MANKONO",
+      "regionCode": "BERE"
+    },
+    {
+      "code": "D06ENQ1",
+      "nom": "Lettoh Zodé Zibo Franck",
+      "libelleComplet": "ENQUETEUR BOUAKE_NORD_EST N°1 — Lettoh Zodé Zibo Franck (D06ENQ1)",
+      "districtCode": "BOUAKE_NORD_EST",
+      "regionCode": "GBEKE"
+    },
+    {
+      "code": "D06ENQ2",
+      "nom": "Mme DIARRA NÉE COULIBALY TIERGNÉMÉ NAKONGNON",
+      "libelleComplet": "ENQUETEUR BOUAKE_NORD_EST N°2 — Mme DIARRA NÉE COULIBALY TIERGNÉMÉ NAKONGNON (D06ENQ2)",
+      "districtCode": "BOUAKE_NORD_EST",
+      "regionCode": "GBEKE"
+    },
+    {
+      "code": "D06ENQ3",
+      "nom": "Sako Bagaoussou",
+      "libelleComplet": "ENQUETEUR BOUAKE_NORD_EST N°3 — Sako Bagaoussou (D06ENQ3)",
+      "districtCode": "BOUAKE_NORD_EST",
+      "regionCode": "GBEKE"
+    },
+    {
+      "code": "D06ENQ4",
+      "nom": "KOUADIO Aya Augustine Epouse KONAN",
+      "libelleComplet": "ENQUETEUR BOUAKE_NORD_EST N°4 — KOUADIO Aya Augustine Epouse KONAN (D06ENQ4)",
+      "districtCode": "BOUAKE_NORD_EST",
+      "regionCode": "GBEKE"
+    },
+    {
+      "code": "D07ENQ1",
+      "nom": "EGNANKOU KODJO MARTIAL",
+      "libelleComplet": "ENQUETEUR DALOA N°1 — EGNANKOU KODJO MARTIAL (D07ENQ1)",
+      "districtCode": "DALOA",
+      "regionCode": "HAUT_SASSANDRA"
+    },
+    {
+      "code": "D07ENQ2",
+      "nom": "YEO YENEDJOMANAN",
+      "libelleComplet": "ENQUETEUR DALOA N°2 — YEO YENEDJOMANAN (D07ENQ2)",
+      "districtCode": "DALOA",
+      "regionCode": "HAUT_SASSANDRA"
+    },
+    {
+      "code": "D07ENQ3",
+      "nom": "ASSI EPSE NOUHO EMILIENNE",
+      "libelleComplet": "ENQUETEUR DALOA N°3 — ASSI EPSE NOUHO EMILIENNE (D07ENQ3)",
+      "districtCode": "DALOA",
+      "regionCode": "HAUT_SASSANDRA"
+    },
+    {
+      "code": "D07ENQ4",
+      "nom": "DAKOURI PIERRE LAZARE",
+      "libelleComplet": "ENQUETEUR DALOA N°4 — DAKOURI PIERRE LAZARE (D07ENQ4)",
+      "districtCode": "DALOA",
+      "regionCode": "HAUT_SASSANDRA"
+    },
+    {
+      "code": "D08ENQ1",
+      "nom": "TCHÉRÉGNIMA ASSIATA SILUÉ",
+      "libelleComplet": "ENQUETEUR SINEMATIALI N°1 — TCHÉRÉGNIMA ASSIATA SILUÉ (D08ENQ1)",
+      "districtCode": "SINEMATIALI",
+      "regionCode": "PORO"
+    },
+    {
+      "code": "D08ENQ2",
+      "nom": "YAO KOUADJO KAN JEAN STÉPHANE",
+      "libelleComplet": "ENQUETEUR SINEMATIALI N°2 — YAO KOUADJO KAN JEAN STÉPHANE (D08ENQ2)",
+      "districtCode": "SINEMATIALI",
+      "regionCode": "PORO"
+    },
+    {
+      "code": "D08ENQ3",
+      "nom": "KADJA VENANCE",
+      "libelleComplet": "ENQUETEUR SINEMATIALI N°3 — KADJA VENANCE (D08ENQ3)",
+      "districtCode": "SINEMATIALI",
+      "regionCode": "PORO"
+    },
+    {
+      "code": "D08ENQ4",
+      "nom": "TO BI GBADJE CHARLES",
+      "libelleComplet": "ENQUETEUR SINEMATIALI N°4 — TO BI GBADJE CHARLES (D08ENQ4)",
+      "districtCode": "SINEMATIALI",
+      "regionCode": "PORO"
+    },
+    {
+      "code": "D09ENQ1",
+      "nom": "AÏE FABRICE ARISTIDE",
+      "libelleComplet": "ENQUETEUR MAN N°1 — AÏE FABRICE ARISTIDE (D09ENQ1)",
+      "districtCode": "MAN",
+      "regionCode": "TONKPI"
+    },
+    {
+      "code": "D09ENQ2",
+      "nom": "DAHE BIENVENUE MARCELLE",
+      "libelleComplet": "ENQUETEUR MAN N°2 — DAHE BIENVENUE MARCELLE (D09ENQ2)",
+      "districtCode": "MAN",
+      "regionCode": "TONKPI"
+    },
+    {
+      "code": "D09ENQ3",
+      "nom": "FAHÉ ZAÉ KEMOUTINHI ELIAB STÉPHANE",
+      "libelleComplet": "ENQUETEUR MAN N°3 — FAHÉ ZAÉ KEMOUTINHI ELIAB STÉPHANE (D09ENQ3)",
+      "districtCode": "MAN",
+      "regionCode": "TONKPI"
+    },
+    {
+      "code": "D09ENQ4",
+      "nom": "NEHO OMER",
+      "libelleComplet": "ENQUETEUR MAN N°4 — NEHO OMER (D09ENQ4)",
+      "districtCode": "MAN",
+      "regionCode": "TONKPI"
+    },
+    {
+      "code": "D10ENQ1",
+      "nom": "KONE ASSITA",
+      "libelleComplet": "ENQUETEUR ODIENNE N°1 — KONE ASSITA (D10ENQ1)",
+      "districtCode": "ODIENNE",
+      "regionCode": "KABADOUGOU"
+    },
+    {
+      "code": "D10ENQ2",
+      "nom": "Kouassi Ory Sosthene durand",
+      "libelleComplet": "ENQUETEUR ODIENNE N°2 — Kouassi Ory Sosthene durand (D10ENQ2)",
+      "districtCode": "ODIENNE",
+      "regionCode": "KABADOUGOU"
+    },
+    {
+      "code": "D10ENQ3",
+      "nom": "TRAORE AHMED SEKOU",
+      "libelleComplet": "ENQUETEUR ODIENNE N°3 — TRAORE AHMED SEKOU (D10ENQ3)",
+      "districtCode": "ODIENNE",
+      "regionCode": "KABADOUGOU"
+    },
+    {
+      "code": "D10ENQ4",
+      "nom": "SORO OUMARD",
+      "libelleComplet": "ENQUETEUR ODIENNE N°4 — SORO OUMARD (D10ENQ4)",
+      "districtCode": "ODIENNE",
+      "regionCode": "KABADOUGOU"
+    },
+    {
+      "code": "D11ENQ1",
+      "nom": "OUATTARA SIAKA",
+      "libelleComplet": "ENQUETEUR SAN_PEDRO N°1 — OUATTARA SIAKA (D11ENQ1)",
+      "districtCode": "SAN_PEDRO",
+      "regionCode": "SAN_PEDRO"
+    },
+    {
+      "code": "D11ENQ2",
+      "nom": "BAKAYOKO YAYA",
+      "libelleComplet": "ENQUETEUR SAN_PEDRO N°2 — BAKAYOKO YAYA (D11ENQ2)",
+      "districtCode": "SAN_PEDRO",
+      "regionCode": "SAN_PEDRO"
+    },
+    {
+      "code": "D11ENQ3",
+      "nom": "ATTA KOUAME OLIVIER",
+      "libelleComplet": "ENQUETEUR SAN_PEDRO N°3 — ATTA KOUAME OLIVIER (D11ENQ3)",
+      "districtCode": "SAN_PEDRO",
+      "regionCode": "SAN_PEDRO"
+    },
+    {
+      "code": "D11ENQ4",
+      "nom": "PALE SAMBE",
+      "libelleComplet": "ENQUETEUR SAN_PEDRO N°4 — PALE SAMBE (D11ENQ4)",
+      "districtCode": "SAN_PEDRO",
+      "regionCode": "SAN_PEDRO"
+    },
+    {
+      "code": "D12ENQ1",
+      "nom": "Yéyé Loba Asther Dervin",
+      "libelleComplet": "ENQUETEUR TIEBISSOU N°1 — Yéyé Loba Asther Dervin (D12ENQ1)",
+      "districtCode": "TIEBISSOU",
+      "regionCode": "BELIER"
+    },
+    {
+      "code": "D12ENQ2",
+      "nom": "APPOH KOUAME GUILLAUME BORIS",
+      "libelleComplet": "ENQUETEUR TIEBISSOU N°2 — APPOH KOUAME GUILLAUME BORIS (D12ENQ2)",
+      "districtCode": "TIEBISSOU",
+      "regionCode": "BELIER"
+    },
+    {
+      "code": "D12ENQ3",
+      "nom": "M'bro Edmond Didier",
+      "libelleComplet": "ENQUETEUR TIEBISSOU N°3 — M'bro Edmond Didier (D12ENQ3)",
+      "districtCode": "TIEBISSOU",
+      "regionCode": "BELIER"
+    },
+    {
+      "code": "D12ENQ4",
+      "nom": "KOUASSI KOUAME GUY MELAIRE",
+      "libelleComplet": "ENQUETEUR TIEBISSOU N°4 — KOUASSI KOUAME GUY MELAIRE (D12ENQ4)",
+      "districtCode": "TIEBISSOU",
+      "regionCode": "BELIER"
+    },
+    {
+      "code": "D01ENQ5",
+      "nom": "KOUAKOU KOUAKOU FLORENTIN",
+      "libelleComplet": "ENQUETEUR ABENGOUROU N°5 — KOUAKOU KOUAKOU FLORENTIN (D01ENQ5)",
+      "districtCode": "ABENGOUROU",
+      "regionCode": "INDENIE_DUABLIN"
+    },
+    {
+      "code": "D02ENQ5",
+      "nom": "SEGBE HIANNO MARCELLIN",
+      "libelleComplet": "ENQUETEUR AGBOVILLE N°5 — SEGBE HIANNO MARCELLIN (D02ENQ5)",
+      "districtCode": "AGBOVILLE",
+      "regionCode": "AGNEBY_TIASSA"
+    },
+    {
+      "code": "D03ENQ5",
+      "nom": "GUEI SOLA MELANIE",
+      "libelleComplet": "ENQUETEUR YOPOUGON_OUEST_SONGON N°5 — GUEI SOLA MELANIE (D03ENQ5)",
+      "districtCode": "YOPOUGON_OUEST_SONGON",
+      "regionCode": "ABIDJAN_1"
+    },
+    {
+      "code": "D06ENQ5",
+      "nom": "YEO Dofoungon",
+      "libelleComplet": "ENQUETEUR BOUAKE_NORD_EST N°5 — YEO Dofoungon (D06ENQ5)",
+      "districtCode": "BOUAKE_NORD_EST",
+      "regionCode": "GBEKE"
+    },
+    {
+      "code": "D09ENQ5",
+      "nom": "TAHOU ALAIN SERGE",
+      "libelleComplet": "ENQUETEUR MAN N°5 — TAHOU ALAIN SERGE (D09ENQ5)",
+      "districtCode": "MAN",
+      "regionCode": "TONKPI"
+    },
+    {
+      "code": "D12ENQ5",
+      "nom": "ABLEGUE Franceline nicaise",
+      "libelleComplet": "ENQUETEUR TIEBISSOU N°5 — ABLEGUE Franceline nicaise (D12ENQ5)",
+      "districtCode": "TIEBISSOU",
+      "regionCode": "BELIER"
+    },
+    {
+      "code": "D04ENQ5",
+      "nom": "ASSIELOU OI ASSIELOU ADELIC FRANCIS OMER",
+      "libelleComplet": "ENQUETEUR BONDOUKOU N°5 — ASSIELOU OI ASSIELOU ADELIC FRANCIS OMER (D04ENQ5)",
+      "districtCode": "BONDOUKOU",
+      "regionCode": "GONTOUGO"
+    },
+    {
+      "code": "D11ENQ5",
+      "nom": "OULE LOU GOHINAN EDOXIE",
+      "libelleComplet": "ENQUETEUR SAN_PEDRO N°5 — OULE LOU GOHINAN EDOXIE (D11ENQ5)",
+      "districtCode": "SAN_PEDRO",
+      "regionCode": "SAN_PEDRO"
+    },
+    {
+      "code": "D08ENQ5",
+      "nom": "BOFFOUO ESSY GUY STEPHANE",
+      "libelleComplet": "ENQUETEUR SINEMATIALI N°5 — BOFFOUO ESSY GUY STEPHANE (D08ENQ5)",
+      "districtCode": "SINEMATIALI",
+      "regionCode": "PORO"
+    },
+    {
+      "code": "D05ENQ5",
+      "nom": "KESSE EKAZA OUSSENY",
+      "libelleComplet": "ENQUETEUR MANKONO N°5 — KESSE EKAZA OUSSENY (D05ENQ5)",
+      "districtCode": "MANKONO",
+      "regionCode": "BERE"
+    },
+    {
+      "code": "D07ENQ5",
+      "nom": "FANY NEE ZOH MAKANI ANGELE",
+      "libelleComplet": "ENQUETEUR DALOA N°5 — FANY NEE ZOH MAKANI ANGELE (D07ENQ5)",
+      "districtCode": "DALOA",
+      "regionCode": "HAUT_SASSANDRA"
+    },
+    {
+      "code": "D10ENQ5",
+      "nom": "KOPOIN N’DEPO EUGENE",
+      "libelleComplet": "ENQUETEUR ODIENNE N°5 — KOPOIN N’DEPO EUGENE (D10ENQ5)",
+      "districtCode": "ODIENNE",
+      "regionCode": "KABADOUGOU"
+    }
+  ],
+  "superviseurs": [
+    {
+      "code": "D01SUP1",
+      "nom": "ABOH née AKA Akoua Odile",
+      "libelleComplet": "SUPERVISEUR ABENGOUROU — ABOH née AKA Akoua Odile (D01SUP1)",
+      "districtCode": "ABENGOUROU",
+      "regionCode": "INDENIE_DUABLIN"
+    },
+    {
+      "code": "D02SUP2",
+      "nom": "KONAN KOUASSI J.M",
+      "libelleComplet": "SUPERVISEUR AGBOVILLE — KONAN KOUASSI J.M (D02SUP2)",
+      "districtCode": "AGBOVILLE",
+      "regionCode": "AGNEBY_TIASSA"
+    },
+    {
+      "code": "D03SUP3",
+      "nom": "ABONZAN ASSOUAN FRANCK YANNICK",
+      "libelleComplet": "SUPERVISEUR YOPOUGON_OUEST_SONGON — ABONZAN ASSOUAN FRANCK YANNICK (D03SUP3)",
+      "districtCode": "YOPOUGON_OUEST_SONGON",
+      "regionCode": "ABIDJAN_1"
+    },
+    {
+      "code": "D04SUP4",
+      "nom": "DIBO N'DRE EMILIENNE",
+      "libelleComplet": "SUPERVISEUR BONDOUKOU — DIBO N'DRE EMILIENNE (D04SUP4)",
+      "districtCode": "BONDOUKOU",
+      "regionCode": "GONTOUGO"
+    },
+    {
+      "code": "D05SUP5",
+      "nom": "ARRIKO IWOH VICTORINE EPOUSE KOFFI",
+      "libelleComplet": "SUPERVISEUR MANKONO — ARRIKO IWOH VICTORINE EPOUSE KOFFI (D05SUP5)",
+      "districtCode": "MANKONO",
+      "regionCode": "BERE"
+    },
+    {
+      "code": "D06SUP6",
+      "nom": "KANE NOUHO ABDOUL KARIM JUNIOR",
+      "libelleComplet": "SUPERVISEUR BOUAKE_NORD_EST — KANE NOUHO ABDOUL KARIM JUNIOR (D06SUP6)",
+      "districtCode": "BOUAKE_NORD_EST",
+      "regionCode": "GBEKE"
+    },
+    {
+      "code": "D07SUP7",
+      "nom": "YAO N’DRI AIMÉ",
+      "libelleComplet": "SUPERVISEUR DALOA — YAO N’DRI AIMÉ (D07SUP7)",
+      "districtCode": "DALOA",
+      "regionCode": "HAUT_SASSANDRA"
+    },
+    {
+      "code": "D08SUP8",
+      "nom": "COULIBALY OUNGOUTIO LÉONIE",
+      "libelleComplet": "SUPERVISEUR SINEMATIALI — COULIBALY OUNGOUTIO LÉONIE (D08SUP8)",
+      "districtCode": "SINEMATIALI",
+      "regionCode": "PORO"
+    },
+    {
+      "code": "D09SUP9",
+      "nom": "GUE GUY LEOPOLD",
+      "libelleComplet": "SUPERVISEUR MAN — GUE GUY LEOPOLD (D09SUP9)",
+      "districtCode": "MAN",
+      "regionCode": "TONKPI"
+    },
+    {
+      "code": "D10SUP10",
+      "nom": "SAHANDE NEE N'DOYE FATOUMATA",
+      "libelleComplet": "SUPERVISEUR ODIENNE — SAHANDE NEE N'DOYE FATOUMATA (D10SUP10)",
+      "districtCode": "ODIENNE",
+      "regionCode": "KABADOUGOU"
+    },
+    {
+      "code": "D11SUP11",
+      "nom": "ASSAMOI AKISSI MARCELLINE ÉPOUSE DIAGOLA",
+      "libelleComplet": "SUPERVISEUR SAN_PEDRO — ASSAMOI AKISSI MARCELLINE ÉPOUSE DIAGOLA (D11SUP11)",
+      "districtCode": "SAN_PEDRO",
+      "regionCode": "SAN_PEDRO"
+    },
+    {
+      "code": "D12SUP12",
+      "nom": "AGNIMEL ANGBRA FABRICE JEAN DONALD",
+      "libelleComplet": "SUPERVISEUR TIEBISSOU — AGNIMEL ANGBRA FABRICE JEAN DONALD (D12SUP12)",
+      "districtCode": "TIEBISSOU",
+      "regionCode": "BELIER"
+    }
+  ],
+  "etablissements": [
+    {
+      "code": "EPHR_PUBLIC_DE_ABENGOUROU",
+      "codeId": "E01",
+      "libelle": "EPHR PUBLIC de ABENGOUROU (EPH (EPHR/EPHD))",
+      "type": "EPHR",
+      "districtCode": "ABENGOUROU",
+      "regionCode": "INDENIE_DUABLIN",
+      "enqueteurCode": "D01ENQ1"
+    },
+    {
+      "code": "CSU_DM_PUBLIC_DE_APPOISSO",
+      "codeId": "E02",
+      "libelle": "CSU-DM PUBLIC de APPOISSO (CSU)",
+      "type": "CSU_DM",
+      "districtCode": "ABENGOUROU",
+      "regionCode": "INDENIE_DUABLIN",
+      "enqueteurCode": "D01ENQ4"
+    },
+    {
+      "code": "CSU_DM_PUBLIC_DE_ANIASSUE",
+      "codeId": "E03",
+      "libelle": "CSU-DM PUBLIC de ANIASSUE (CSU)",
+      "type": "CSU_DM",
+      "districtCode": "ABENGOUROU",
+      "regionCode": "INDENIE_DUABLIN",
+      "enqueteurCode": "D01ENQ2"
+    },
+    {
+      "code": "CSU_DM_PUBLIC_DE_YAKASSE_FEYASSE",
+      "codeId": "E04",
+      "libelle": "CSU-DM PUBLIC de YAKASSE-FEYASSE (CSU)",
+      "type": "CSU_DM",
+      "districtCode": "ABENGOUROU",
+      "regionCode": "INDENIE_DUABLIN",
+      "enqueteurCode": "D01ENQ3"
+    },
+    {
+      "code": "CSU_DM_PUBLIC_DE_ZARANOU",
+      "codeId": "E05",
+      "libelle": "CSU-DM PUBLIC de ZARANOU (CSU)",
+      "type": "CSU_DM",
+      "districtCode": "ABENGOUROU",
+      "regionCode": "INDENIE_DUABLIN",
+      "enqueteurCode": "D01ENQ4"
+    },
+    {
+      "code": "CSR_DM_PUBLIC_DE_KODJINA",
+      "codeId": "E06",
+      "libelle": "CSR-DM PUBLIC de KODJINAN (CSR)",
+      "type": "CSR_DM",
+      "districtCode": "ABENGOUROU",
+      "regionCode": "INDENIE_DUABLIN",
+      "enqueteurCode": "D01ENQ2"
+    },
+    {
+      "code": "CSR_DM_PUBLIC_DE_ZAMAKA",
+      "codeId": "E07",
+      "libelle": "CSR-DM PUBLIC de ZAMAKA (CSR)",
+      "type": "CSR_DM",
+      "districtCode": "ABENGOUROU",
+      "regionCode": "INDENIE_DUABLIN",
+      "enqueteurCode": "D01ENQ3"
+    },
+    {
+      "code": "CSR_D_PUBLIC_DE_KOUASSI_BENIEKRO",
+      "codeId": "E08",
+      "libelle": "CSR-D PUBLIC de KOUASSI-BENIEKRO (CSR)",
+      "type": "CSR_D",
+      "districtCode": "ABENGOUROU",
+      "regionCode": "INDENIE_DUABLIN",
+      "enqueteurCode": "D01ENQ1"
+    },
+    {
+      "code": "CSR_DM_PUBLIC_DE_ELINSO",
+      "codeId": "E09",
+      "libelle": "CSR-DM PUBLIC de ELINSO (CSR)",
+      "type": "CSR_DM",
+      "districtCode": "ABENGOUROU",
+      "regionCode": "INDENIE_DUABLIN",
+      "enqueteurCode": "D01ENQ5"
+    },
+    {
+      "code": "CSR_DM_PUBLIC_DE_KOITIENKRO",
+      "codeId": "E10",
+      "libelle": "CSR-DM PUBLIC de KOITIENKRO (CSR)",
+      "type": "CSR_DM",
+      "districtCode": "ABENGOUROU",
+      "regionCode": "INDENIE_DUABLIN",
+      "enqueteurCode": "D01ENQ5"
+    },
+    {
+      "code": "EPHR_PUBLIC_DE_AGBOVILLE",
+      "codeId": "E01",
+      "libelle": "EPHR PUBLIC de AGBOVILLE (EPH (EPHR/EPHD))",
+      "type": "EPHR",
+      "districtCode": "AGBOVILLE",
+      "regionCode": "AGNEBY_TIASSA",
+      "enqueteurCode": "D02ENQ3"
+    },
+    {
+      "code": "CSU_DM_PUBLIC_DE_GRAND_MORIE",
+      "codeId": "E02",
+      "libelle": "CSU-DM PUBLIC de GRAND-MORIE (CSU)",
+      "type": "CSU_DM",
+      "districtCode": "AGBOVILLE",
+      "regionCode": "AGNEBY_TIASSA",
+      "enqueteurCode": "D02ENQ1"
+    },
+    {
+      "code": "CSUS_PMI_PUBLIC_DE_AGBOVILLE",
+      "codeId": "E03",
+      "libelle": "CSUS-PMI PUBLIC de AGBOVILLE (CSU)",
+      "type": "CSUS_PMI",
+      "districtCode": "AGBOVILLE",
+      "regionCode": "AGNEBY_TIASSA",
+      "enqueteurCode": "D02ENQ3"
+    },
+    {
+      "code": "CSU_DM_PUBLIC_DE_KOUAKOUKRO_SOKOURA",
+      "codeId": "E04",
+      "libelle": "CSU-DM PUBLIC de KOUAKOUKRO-SOKOURA (CSU)",
+      "type": "CSU_DM",
+      "districtCode": "AGBOVILLE",
+      "regionCode": "AGNEBY_TIASSA",
+      "enqueteurCode": "D02ENQ5"
+    },
+    {
+      "code": "CSU_DM_PUBLIC_DE_AZAGUIE",
+      "codeId": "E05",
+      "libelle": "CSU-DM PUBLIC de AZAGUIE (CSU)",
+      "type": "CSU_DM",
+      "districtCode": "AGBOVILLE",
+      "regionCode": "AGNEBY_TIASSA",
+      "enqueteurCode": "D02ENQ2"
+    },
+    {
+      "code": "CSU_DM_PUBLIC_DE_RUBINO",
+      "codeId": "E06",
+      "libelle": "CSU-DM PUBLIC de RUBINO (CSU)",
+      "type": "CSU_DM",
+      "districtCode": "AGBOVILLE",
+      "regionCode": "AGNEBY_TIASSA",
+      "enqueteurCode": "D02ENQ4"
+    },
+    {
+      "code": "CSR_D_PUBLIC_DE_GRAND_MOUTCHO",
+      "codeId": "E07",
+      "libelle": "CSR-D PUBLIC de GRAND MOUTCHO (CSR)",
+      "type": "CSR_D",
+      "districtCode": "AGBOVILLE",
+      "regionCode": "AGNEBY_TIASSA",
+      "enqueteurCode": "D02ENQ1"
+    },
+    {
+      "code": "CSR_D_PUBLIC_DE_GOUABO",
+      "codeId": "E08",
+      "libelle": "CSR-D PUBLIC de GOUABO (CSR)",
+      "type": "CSR_D",
+      "districtCode": "AGBOVILLE",
+      "regionCode": "AGNEBY_TIASSA",
+      "enqueteurCode": "D02ENQ4"
+    },
+    {
+      "code": "CSR_DM_PUBLIC_DE_GRAND_YAPO",
+      "codeId": "E09",
+      "libelle": "CSR-DM PUBLIC de GRAND-YAPO (CSR)",
+      "type": "CSR_DM",
+      "districtCode": "AGBOVILLE",
+      "regionCode": "AGNEBY_TIASSA",
+      "enqueteurCode": "D02ENQ2"
+    },
+    {
+      "code": "CSR_DM_PUBLIC_DE_YAPO_GARE",
+      "codeId": "E10",
+      "libelle": "CSR-DM PUBLIC de YAPO-GARE (CSR)",
+      "type": "CSR_DM",
+      "districtCode": "AGBOVILLE",
+      "regionCode": "AGNEBY_TIASSA",
+      "enqueteurCode": "D02ENQ5"
+    },
+    {
+      "code": "EPHD_PUBLIC_DE_YOPOUGON_ATTIE",
+      "codeId": "E01",
+      "libelle": "EPHD PUBLIC de YOPOUGON-ATTIE (EPH (EPHR/EPHD))",
+      "type": "EPHD",
+      "districtCode": "YOPOUGON_OUEST_SONGON",
+      "regionCode": "ABIDJAN_1",
+      "enqueteurCode": "D03ENQ1"
+    },
+    {
+      "code": "CSU_DM_PUBLIC_COMMUNAUTAIRE_NIANGON_LOKOA_DE_YOPOUGON",
+      "codeId": "E02",
+      "libelle": "CSU-DM PUBLIC COMMUNAUTAIRE Niangon Lokoa de YOPOUGON (CSU)",
+      "type": "CSU_DM",
+      "districtCode": "YOPOUGON_OUEST_SONGON",
+      "regionCode": "ABIDJAN_1",
+      "enqueteurCode": "D03ENQ4"
+    },
+    {
+      "code": "CSU_DM_PUBLIC_COMMUNAUTAIRE_DE_YOPOUGON_AZITO",
+      "codeId": "E03",
+      "libelle": "CSU-DM PUBLIC COMMUNAUTAIRE de YOPOUGON AZITO (CSU)",
+      "type": "CSU_DM",
+      "districtCode": "YOPOUGON_OUEST_SONGON",
+      "regionCode": "ABIDJAN_1",
+      "enqueteurCode": "D03ENQ4"
+    },
+    {
+      "code": "CSU_DM_PUBLIC_DE_SONGON_KASSABLE",
+      "codeId": "E04",
+      "libelle": "CSU-DM PUBLIC de Songon KASSABLE (CSU)",
+      "type": "CSU_DM",
+      "districtCode": "YOPOUGON_OUEST_SONGON",
+      "regionCode": "ABIDJAN_1",
+      "enqueteurCode": "D03ENQ5"
+    },
+    {
+      "code": "CSR_D_PUBLIC_D_AUDOIN",
+      "codeId": "E05",
+      "libelle": "CSR-D PUBLIC d' AUDOIN (CSU)",
+      "type": "CSR_D",
+      "districtCode": "YOPOUGON_OUEST_SONGON",
+      "regionCode": "ABIDJAN_1",
+      "enqueteurCode": "D03ENQ2"
+    },
+    {
+      "code": "CSR_D_PUBLIC_DE_BAGO",
+      "codeId": "E06",
+      "libelle": "CSR-D PUBLIC de BAGO (CSR)",
+      "type": "CSR_D",
+      "districtCode": "YOPOUGON_OUEST_SONGON",
+      "regionCode": "ABIDJAN_1",
+      "enqueteurCode": "D03ENQ3"
+    },
+    {
+      "code": "CSR_D_PUBLIC_DE_KOSSIHOUEN",
+      "codeId": "E07",
+      "libelle": "CSR-D PUBLIC de KOSSIHOUEN (CSR)",
+      "type": "CSR_D",
+      "districtCode": "YOPOUGON_OUEST_SONGON",
+      "regionCode": "ABIDJAN_1",
+      "enqueteurCode": "D03ENQ3"
+    },
+    {
+      "code": "CSR_DM_PUBLIC_DE_ABADJIN_KOUTE",
+      "codeId": "E08",
+      "libelle": "CSR-DM PUBLIC de ABADJIN-KOUTE (CSR)",
+      "type": "CSR_DM",
+      "districtCode": "YOPOUGON_OUEST_SONGON",
+      "regionCode": "ABIDJAN_1",
+      "enqueteurCode": "D03ENQ2"
+    },
+    {
+      "code": "CSR_DM_PUBLIC_DE_ADIOPODOUME",
+      "codeId": "E09",
+      "libelle": "CSR-DM PUBLIC de ADIOPODOUME (CSR)",
+      "type": "CSR_DM",
+      "districtCode": "YOPOUGON_OUEST_SONGON",
+      "regionCode": "ABIDJAN_1",
+      "enqueteurCode": "D03ENQ1"
+    },
+    {
+      "code": "CSR_DM_PUBLIC_DE_SONGON_AGBAN",
+      "codeId": "E10",
+      "libelle": "CSR-DM PUBLIC de SONGON AGBAN (CSR)",
+      "type": "CSR_DM",
+      "districtCode": "YOPOUGON_OUEST_SONGON",
+      "regionCode": "ABIDJAN_1",
+      "enqueteurCode": "D03ENQ5"
+    },
+    {
+      "code": "EPHR_PUBLIC_DE_BONDOUKOU",
+      "codeId": "E01",
+      "libelle": "EPHR PUBLIC de BONDOUKOU (EPH (EPHR/EPHD))",
+      "type": "EPHR",
+      "districtCode": "BONDOUKOU",
+      "regionCode": "GONTOUGO",
+      "enqueteurCode": "D04ENQ2"
+    },
+    {
+      "code": "CSU_DM_PUBLIC_DE_YEZIMALA",
+      "codeId": "E02",
+      "libelle": "CSU-DM PUBLIC de YEZIMALA (CSU)",
+      "type": "CSU_DM",
+      "districtCode": "BONDOUKOU",
+      "regionCode": "GONTOUGO",
+      "enqueteurCode": "D04ENQ4"
+    },
+    {
+      "code": "CSUS_PMI_PUBLIC_DE_BOUDOUKOU",
+      "codeId": "E03",
+      "libelle": "CSUS-PMI PUBLIC de BOUDOUKOU (CSU)",
+      "type": "CSUS_PMI",
+      "districtCode": "BONDOUKOU",
+      "regionCode": "GONTOUGO",
+      "enqueteurCode": "D04ENQ5"
+    },
+    {
+      "code": "CSU_DM_PUBLIC_DE_SOKO",
+      "codeId": "E04",
+      "libelle": "CSU-DM PUBLIC DE SOKO (CSU)",
+      "type": "CSU_DM",
+      "districtCode": "BONDOUKOU",
+      "regionCode": "GONTOUGO",
+      "enqueteurCode": "D04ENQ3"
+    },
+    {
+      "code": "CSU_D_PUBLIC_DE_BONDOUKOU",
+      "codeId": "E05",
+      "libelle": "CSU-D PUBLIC de BONDOUKOU (CSU)",
+      "type": "CSU_D",
+      "districtCode": "BONDOUKOU",
+      "regionCode": "GONTOUGO",
+      "enqueteurCode": "D04ENQ2"
+    },
+    {
+      "code": "CSR_DM_PUBLIC_DE_HEREBO",
+      "codeId": "E06",
+      "libelle": "CSR-DM PUBLIC de HEREBO (CSR)",
+      "type": "CSR_DM",
+      "districtCode": "BONDOUKOU",
+      "regionCode": "GONTOUGO",
+      "enqueteurCode": "D04ENQ1"
+    },
+    {
+      "code": "CSR_DM_PUBLIC_DE_KOUASSI_NDAWA",
+      "codeId": "E07",
+      "libelle": "CSR-DM PUBLIC KOUASSI-NDAWA (CSR)",
+      "type": "CSR_DM",
+      "districtCode": "BONDOUKOU",
+      "regionCode": "GONTOUGO",
+      "enqueteurCode": "D04ENQ4"
+    },
+    {
+      "code": "CSR_DM_PUBLIC_DE_SONGORI",
+      "codeId": "E08",
+      "libelle": "CSR-DM PUBLIC de SONGORI (CSR)",
+      "type": "CSR_DM",
+      "districtCode": "BONDOUKOU",
+      "regionCode": "GONTOUGO",
+      "enqueteurCode": "D04ENQ1"
+    },
+    {
+      "code": "CSR_D_PUBLIC_DE_MOTIAMO",
+      "codeId": "E09",
+      "libelle": "CSR-D PUBLIC de MOTIAMO (CSR)",
+      "type": "CSR_D",
+      "districtCode": "BONDOUKOU",
+      "regionCode": "GONTOUGO",
+      "enqueteurCode": "D04ENQ3"
+    },
+    {
+      "code": "CSR_DM_PUBLIC_DE_BOROMBA",
+      "codeId": "E10",
+      "libelle": "CSR-DM PUBLIC de BOROMBA (CSR)",
+      "type": "CSR_DM",
+      "districtCode": "BONDOUKOU",
+      "regionCode": "GONTOUGO",
+      "enqueteurCode": "D04ENQ5"
+    },
+    {
+      "code": "EPHD_PUBLIC_DE_MANKONO",
+      "codeId": "E01",
+      "libelle": "EPHD PUBLIC de MANKONO (EPH (EPHR/EPHD))",
+      "type": "EPHD",
+      "districtCode": "MANKONO",
+      "regionCode": "BERE",
+      "enqueteurCode": "D05ENQ2"
+    },
+    {
+      "code": "CSU_DM_PUBLIC_DE_SARHALA",
+      "codeId": "E02",
+      "libelle": "CSU-DM PUBLIC de SARHALA (CSU)",
+      "type": "CSU_DM",
+      "districtCode": "MANKONO",
+      "regionCode": "BERE",
+      "enqueteurCode": "D05ENQ1"
+    },
+    {
+      "code": "CSUS_PMI_PUBLIC_DE_MANKONO",
+      "codeId": "E03",
+      "libelle": "CSUS-PMI PUBLIC DE MANKONO (CSU)",
+      "type": "CSUS_PMI",
+      "districtCode": "MANKONO",
+      "regionCode": "BERE",
+      "enqueteurCode": "D05ENQ2"
+    },
+    {
+      "code": "CSU_DM_PUBLIC_DE_TIENINGBOUE",
+      "codeId": "E04",
+      "libelle": "CSU-DM PUBLIC de TIENINGBOUE (CSU)",
+      "type": "CSU_DM",
+      "districtCode": "MANKONO",
+      "regionCode": "BERE",
+      "enqueteurCode": "D05ENQ4"
+    },
+    {
+      "code": "CSU_DM_PUBLIC_DE_BOUANDOUGOU",
+      "codeId": "E05",
+      "libelle": "CSU-DM PUBLIC de BOUANDOUGOU (CSU)",
+      "type": "CSU_DM",
+      "districtCode": "MANKONO",
+      "regionCode": "BERE",
+      "enqueteurCode": "D05ENQ5"
+    },
+    {
+      "code": "CSR_D_PUBLIC_DE_KOBADALLAH",
+      "codeId": "E06",
+      "libelle": "CSR-D PUBLIC de KOBADALLAH (CSR)",
+      "type": "CSR_D",
+      "districtCode": "MANKONO",
+      "regionCode": "BERE",
+      "enqueteurCode": "D05ENQ4"
+    },
+    {
+      "code": "CSR_DM_PUBLIC_DE_NINAKIRI",
+      "codeId": "E07",
+      "libelle": "CSR-DM PUBLIC de NINAKIRI (CSR)",
+      "type": "CSR_DM",
+      "districtCode": "MANKONO",
+      "regionCode": "BERE",
+      "enqueteurCode": "D05ENQ5"
+    },
+    {
+      "code": "CSR_D_PUBLIC_DE_KARAMOKOLA",
+      "codeId": "E08",
+      "libelle": "CSR-D PUBLIC de KARAMOKOLA (CSR)",
+      "type": "CSR_D",
+      "districtCode": "MANKONO",
+      "regionCode": "BERE",
+      "enqueteurCode": "D05ENQ3"
+    },
+    {
+      "code": "CSR_D_PUBLIC_DE_DAWARA",
+      "codeId": "E09",
+      "libelle": "CSR-D PUBLIC de DAWARA (CSR)",
+      "type": "CSR_D",
+      "districtCode": "MANKONO",
+      "regionCode": "BERE",
+      "enqueteurCode": "D05ENQ3"
+    },
+    {
+      "code": "CSR_DM_PUBLIC_DE_BIELOU",
+      "codeId": "E10",
+      "libelle": "CSR-DM PUBLIC de BIELOU (CSR)",
+      "type": "CSR_DM",
+      "districtCode": "MANKONO",
+      "regionCode": "BERE",
+      "enqueteurCode": "D05ENQ1"
+    },
+    {
+      "code": "EPHR_PUBLIC_DE_BOUAKE",
+      "codeId": "E01",
+      "libelle": "EPHR PUBLIC de BOUAKE (EPH (EPHR/EPHD))",
+      "type": "EPHR",
+      "districtCode": "BOUAKE_NORD_EST",
+      "regionCode": "GBEKE",
+      "enqueteurCode": "D06ENQ2"
+    },
+    {
+      "code": "CSU_DM_PUBLIC_DE_BROBO",
+      "codeId": "E02",
+      "libelle": "CSU-DM PUBLIC de BROBO (CSU)",
+      "type": "CSU_DM",
+      "districtCode": "BOUAKE_NORD_EST",
+      "regionCode": "GBEKE",
+      "enqueteurCode": "D06ENQ1"
+    },
+    {
+      "code": "CSUS_PMI_PUBLIC_DE_BOUAKE_SOKOURA",
+      "codeId": "E03",
+      "libelle": "CSUS-PMI PUBLIC de BOUAKE SOKOURA (CSU)",
+      "type": "CSUS_PMI",
+      "districtCode": "BOUAKE_NORD_EST",
+      "regionCode": "GBEKE",
+      "enqueteurCode": "D06ENQ4"
+    },
+    {
+      "code": "CSU_DM_PUBLIC_DE_MINANKRO",
+      "codeId": "E04",
+      "libelle": "CSU-DM PUBLIC de MINANKRO (CSU)",
+      "type": "CSU_DM",
+      "districtCode": "BOUAKE_NORD_EST",
+      "regionCode": "GBEKE",
+      "enqueteurCode": "D06ENQ5"
+    },
+    {
+      "code": "CSU_DM_PUBLIC_COMMUNAUTAIRE_DE_KOTIAKOFFIKRO",
+      "codeId": "E05",
+      "libelle": "CSU-DM PUBLIC COMMUNAUTAIRE de KOTIAKOFFIKRO (CSU)",
+      "type": "CSU_DM",
+      "districtCode": "BOUAKE_NORD_EST",
+      "regionCode": "GBEKE",
+      "enqueteurCode": "D06ENQ4"
+    },
+    {
+      "code": "CSR_DM_PUBLIC_DE_BOUNDA_S_P_DE_BROBO",
+      "codeId": "E06",
+      "libelle": "CSR-DM PUBLIC de BOUNDA (s/p de Brobo) (CSR)",
+      "type": "CSR_DM",
+      "districtCode": "BOUAKE_NORD_EST",
+      "regionCode": "GBEKE",
+      "enqueteurCode": "D06ENQ1"
+    },
+    {
+      "code": "CSU_DM_PUBLIC_DE_BOUAKE_BELLE_VILLE",
+      "codeId": "E07",
+      "libelle": "CSU-DM PUBLIC de BOUAKE BELLE-VILLE (CSU)",
+      "type": "CSU_DM",
+      "districtCode": "BOUAKE_NORD_EST",
+      "regionCode": "GBEKE",
+      "enqueteurCode": "D06ENQ2"
+    },
+    {
+      "code": "CSR_DM_PUBLIC_DE_BAMORO",
+      "codeId": "E08",
+      "libelle": "CSR-DM PUBLIC de BAMORO (CSR)",
+      "type": "CSR_DM",
+      "districtCode": "BOUAKE_NORD_EST",
+      "regionCode": "GBEKE",
+      "enqueteurCode": "D06ENQ3"
+    },
+    {
+      "code": "CSR_DM_PUBLIC_DE_MBRAKRO",
+      "codeId": "E09",
+      "libelle": "CSR-DM PUBLIC de MBRAKRO (CSR)",
+      "type": "CSR_DM",
+      "districtCode": "BOUAKE_NORD_EST",
+      "regionCode": "GBEKE",
+      "enqueteurCode": "D06ENQ3"
+    },
+    {
+      "code": "CSR_D_PUBLIC_DE_AKAKRO_S_P_BOUAKE_NORD_EST",
+      "codeId": "E10",
+      "libelle": "CSR-D PUBLIC de AKAKRO (s/p Bouaké Nord-Est) (CSR)",
+      "type": "CSR_D",
+      "districtCode": "BOUAKE_NORD_EST",
+      "regionCode": "GBEKE",
+      "enqueteurCode": "D06ENQ5"
+    },
+    {
+      "code": "EPHR_PUBLIC_DE_DALOA",
+      "codeId": "E01",
+      "libelle": "EPHR PUBLIC de DALOA (EPH (EPHR/EPHD))",
+      "type": "EPHR",
+      "districtCode": "DALOA",
+      "regionCode": "HAUT_SASSANDRA",
+      "enqueteurCode": "D07ENQ1"
+    },
+    {
+      "code": "CSU_DM_PUBLIC_DE_BEDIALA",
+      "codeId": "E02",
+      "libelle": "CSU-DM PUBLIC de BEDIALA (CSU)",
+      "type": "CSU_DM",
+      "districtCode": "DALOA",
+      "regionCode": "HAUT_SASSANDRA",
+      "enqueteurCode": "D07ENQ5"
+    },
+    {
+      "code": "CSUS_PMI_PUBLIC_DE_DALOA",
+      "codeId": "E03",
+      "libelle": "CSUS-PMI PUBLIC de DALOA (CSU)",
+      "type": "CSUS_PMI",
+      "districtCode": "DALOA",
+      "regionCode": "HAUT_SASSANDRA",
+      "enqueteurCode": "D07ENQ3"
+    },
+    {
+      "code": "CSU_DM_PUBLIC_DE_GBOGUHE",
+      "codeId": "E04",
+      "libelle": "CSU-DM PUBLIC de GBOGUHE (CSU)",
+      "type": "CSU_DM",
+      "districtCode": "DALOA",
+      "regionCode": "HAUT_SASSANDRA",
+      "enqueteurCode": "D07ENQ2"
+    },
+    {
+      "code": "CSU_DM_PUBLIC_QUARTIER_GARAGE_DE_DALOA",
+      "codeId": "E05",
+      "libelle": "CSU-DM PUBLIC Quartier Garage de DALOA (CSU)",
+      "type": "CSU_DM",
+      "districtCode": "DALOA",
+      "regionCode": "HAUT_SASSANDRA",
+      "enqueteurCode": "D07ENQ4"
+    },
+    {
+      "code": "CSR_DM_PUBLIC_DE_LUENOUFLA",
+      "codeId": "E06",
+      "libelle": "CSR-DM PUBLIC de LUENOUFLA (CSR)",
+      "type": "CSR_DM",
+      "districtCode": "DALOA",
+      "regionCode": "HAUT_SASSANDRA",
+      "enqueteurCode": "D07ENQ1"
+    },
+    {
+      "code": "CSR_DM_PUBLIC_DE_TCHEBLOGUHE",
+      "codeId": "E07",
+      "libelle": "CSR-DM PUBLIC de TCHEBLOGUHE (CSR)",
+      "type": "CSR_DM",
+      "districtCode": "DALOA",
+      "regionCode": "HAUT_SASSANDRA",
+      "enqueteurCode": "D07ENQ3"
+    },
+    {
+      "code": "CSR_DM_PUBLIC_DE_TAHIRAGUHE",
+      "codeId": "E08",
+      "libelle": "CSR-DM PUBLIC de TAHIRAGUHE (CSR)",
+      "type": "CSR_DM",
+      "districtCode": "DALOA",
+      "regionCode": "HAUT_SASSANDRA",
+      "enqueteurCode": "D07ENQ4"
+    },
+    {
+      "code": "CSR_DM_PUBLIC_DE_BEGAFLA_GNAMANOU",
+      "codeId": "E09",
+      "libelle": "CSR-DM PUBLIC de BEGAFLA (GNAMANOU) (CSR)",
+      "type": "CSR_DM",
+      "districtCode": "DALOA",
+      "regionCode": "HAUT_SASSANDRA",
+      "enqueteurCode": "D07ENQ5"
+    },
+    {
+      "code": "CSR_DM_PUBLIC_DE_DIGBAPIA",
+      "codeId": "E10",
+      "libelle": "CSR-DM PUBLIC de DIGBAPIA (CSR)",
+      "type": "CSR_DM",
+      "districtCode": "DALOA",
+      "regionCode": "HAUT_SASSANDRA",
+      "enqueteurCode": "D07ENQ2"
+    },
+    {
+      "code": "EPHD_PUBLIC_DE_SINEMATIALI",
+      "codeId": "E01",
+      "libelle": "EPHD PUBLIC de SINEMATIALI (EPH (EPHR/EPHD))",
+      "type": "EPHD",
+      "districtCode": "SINEMATIALI",
+      "regionCode": "PORO",
+      "enqueteurCode": "D08ENQ1"
+    },
+    {
+      "code": "CSU_DM_PUBLIC_DE_POLOUROUKAHA",
+      "codeId": "E02",
+      "libelle": "CSU-DM PUBLIC de POLOUROUKAHA (CSU)",
+      "type": "CSU_DM",
+      "districtCode": "SINEMATIALI",
+      "regionCode": "PORO",
+      "enqueteurCode": "D08ENQ2"
+    },
+    {
+      "code": "CSU_DM_PUBLIC_DE_KAGBOLODOUGOU",
+      "codeId": "E03",
+      "libelle": "CSU-DM PUBLIC de KAGBOLODOUGOU (CSU)",
+      "type": "CSU_DM",
+      "districtCode": "SINEMATIALI",
+      "regionCode": "PORO",
+      "enqueteurCode": "D08ENQ1"
+    },
+    {
+      "code": "CSR_DM_PUBLIC_DE_TIONGOFOLOKAHA",
+      "codeId": "E04",
+      "libelle": "CSR-DM PUBLIC de TIONGOFOLOKAHA (CSR)",
+      "type": "CSR_DM",
+      "districtCode": "SINEMATIALI",
+      "regionCode": "PORO",
+      "enqueteurCode": "D08ENQ4"
+    },
+    {
+      "code": "CSR_DM_PUBLIC_DE_NOGOFIGUEKAHA",
+      "codeId": "E05",
+      "libelle": "CSR-DM PUBLIC de NOGOFIGUEKAHA (CSR)",
+      "type": "CSR_DM",
+      "districtCode": "SINEMATIALI",
+      "regionCode": "PORO",
+      "enqueteurCode": "D08ENQ5"
+    },
+    {
+      "code": "CSR_DM_PUBLIC_DE_OUOLLO",
+      "codeId": "E06",
+      "libelle": "CSR-DM PUBLIC de OUOLLO (CSR)",
+      "type": "CSR_DM",
+      "districtCode": "SINEMATIALI",
+      "regionCode": "PORO",
+      "enqueteurCode": "D08ENQ5"
+    },
+    {
+      "code": "CSR_DM_PUBLIC_DE_BAHOUAKAHA",
+      "codeId": "E07",
+      "libelle": "CSR-DM PUBLIC de BAHOUAKAHA (CSR)",
+      "type": "CSR_DM",
+      "districtCode": "SINEMATIALI",
+      "regionCode": "PORO",
+      "enqueteurCode": "D08ENQ3"
+    },
+    {
+      "code": "CSR_DM_PUBLIC_DE_NAKOUROUBELEKAHA",
+      "codeId": "E08",
+      "libelle": "CSR-DM PUBLIC de NAKOUROUBELEKAHA (CSR)",
+      "type": "CSR_DM",
+      "districtCode": "SINEMATIALI",
+      "regionCode": "PORO",
+      "enqueteurCode": "D08ENQ3"
+    },
+    {
+      "code": "CSR_DM_PUBLIC_DE_NONGOTIENEKAHA",
+      "codeId": "E09",
+      "libelle": "CSR-DM PUBLIC de NONGOTIÉNÉKAHA (CSR)",
+      "type": "CSR_DM",
+      "districtCode": "SINEMATIALI",
+      "regionCode": "PORO",
+      "enqueteurCode": "D08ENQ2"
+    },
+    {
+      "code": "CSR_DM_PUBLIC_DE_DABOUNGO",
+      "codeId": "E10",
+      "libelle": "CSR-DM PUBLIC de DABOUNGO (CSR)",
+      "type": "CSR_DM",
+      "districtCode": "SINEMATIALI",
+      "regionCode": "PORO",
+      "enqueteurCode": "D08ENQ4"
+    },
+    {
+      "code": "EPHR_PUBLIC_DE_MAN",
+      "codeId": "E01",
+      "libelle": "EPHR PUBLIC de MAN (EPH (EPHR/EPHD))",
+      "type": "EPHR",
+      "districtCode": "MAN",
+      "regionCode": "TONKPI",
+      "enqueteurCode": "D09ENQ3"
+    },
+    {
+      "code": "CSU_DM_PUBLIC_DE_LOGOUALE",
+      "codeId": "E02",
+      "libelle": "CSU-DM PUBLIC de LOGOUALE (CSU)",
+      "type": "CSU_DM",
+      "districtCode": "MAN",
+      "regionCode": "TONKPI",
+      "enqueteurCode": "D09ENQ4"
+    },
+    {
+      "code": "CSU_DM_PUBLIC_DE_GRAND_GBAPLEU",
+      "codeId": "E03",
+      "libelle": "CSU-DM PUBLIC de GRAND-GBAPLEU (CSU)",
+      "type": "CSU_DM",
+      "districtCode": "MAN",
+      "regionCode": "TONKPI",
+      "enqueteurCode": "D09ENQ2"
+    },
+    {
+      "code": "CSUS_PMI_PUBLIC_DE_MAN",
+      "codeId": "E04",
+      "libelle": "CSUS-PMI PUBLIC de MAN (CSU)",
+      "type": "CSUS_PMI",
+      "districtCode": "MAN",
+      "regionCode": "TONKPI",
+      "enqueteurCode": "D09ENQ5"
+    },
+    {
+      "code": "CSU_D_PUBLIC_LIBREVILLE_DE_MAN",
+      "codeId": "E05",
+      "libelle": "CSU-D PUBLIC Libreville de MAN (CSU)",
+      "type": "CSU_D",
+      "districtCode": "MAN",
+      "regionCode": "TONKPI",
+      "enqueteurCode": "D09ENQ1"
+    },
+    {
+      "code": "CSR_D_PUBLIC_DE_ZIOGOUINE",
+      "codeId": "E06",
+      "libelle": "CSR-D PUBLIC de ZIOGOUINE (CSR)",
+      "type": "CSR_D",
+      "districtCode": "MAN",
+      "regionCode": "TONKPI",
+      "enqueteurCode": "D09ENQ1"
+    },
+    {
+      "code": "CSR_D_PUBLIC_DE_GONGOUINE_1",
+      "codeId": "E07",
+      "libelle": "CSR-D PUBLIC de GONGOUINE 1 (CSR)",
+      "type": "CSR_D",
+      "districtCode": "MAN",
+      "regionCode": "TONKPI",
+      "enqueteurCode": "D09ENQ4"
+    },
+    {
+      "code": "CSR_D_PUBLIC_DE_MLONGOUINE",
+      "codeId": "E08",
+      "libelle": "CSR-D PUBLIC de MLONGOUINE (CSR)",
+      "type": "CSR_D",
+      "districtCode": "MAN",
+      "regionCode": "TONKPI",
+      "enqueteurCode": "D09ENQ3"
+    },
+    {
+      "code": "CSR_D_PUBLIC_DE_ZAGOUE",
+      "codeId": "E09",
+      "libelle": "CSR-D PUBLIC de ZAGOUE (CSR)",
+      "type": "CSR_D",
+      "districtCode": "MAN",
+      "regionCode": "TONKPI",
+      "enqueteurCode": "D09ENQ2"
+    },
+    {
+      "code": "CSR_D_PUBLIC_DE_BOGOUINE_1",
+      "codeId": "E10",
+      "libelle": "CSR-D PUBLIC de BOGOUINE 1 (CSR)",
+      "type": "CSR_D",
+      "districtCode": "MAN",
+      "regionCode": "TONKPI",
+      "enqueteurCode": "D09ENQ5"
+    },
+    {
+      "code": "EPHR_PUBLIC_DE_ODIENNE",
+      "codeId": "E01",
+      "libelle": "EPHR PUBLIC de ODIENNE (EPH (EPHR/EPHD))",
+      "type": "EPHR",
+      "districtCode": "ODIENNE",
+      "regionCode": "KABADOUGOU",
+      "enqueteurCode": "D10ENQ2"
+    },
+    {
+      "code": "CSU_DM_PUBLIC_DE_DIOULATIEDOUGOU",
+      "codeId": "E02",
+      "libelle": "CSU-DM PUBLIC de DIOULATIEDOUGOU (CSU)",
+      "type": "CSU_DM",
+      "districtCode": "ODIENNE",
+      "regionCode": "KABADOUGOU",
+      "enqueteurCode": "D10ENQ4"
+    },
+    {
+      "code": "CSUS_PMI_PUBLIC_DE_ODIENNE",
+      "codeId": "E03",
+      "libelle": "CSUS-PMI PUBLIC de ODIENNE (CSU)",
+      "type": "CSUS_PMI",
+      "districtCode": "ODIENNE",
+      "regionCode": "KABADOUGOU",
+      "enqueteurCode": "D10ENQ1"
+    },
+    {
+      "code": "CSU_DM_PUBLIC_DE_SEYDOUGOU",
+      "codeId": "E04",
+      "libelle": "CSU-DM PUBLIC de SEYDOUGOU (CSU)",
+      "type": "CSU_DM",
+      "districtCode": "ODIENNE",
+      "regionCode": "KABADOUGOU",
+      "enqueteurCode": "D10ENQ2"
+    },
+    {
+      "code": "CSU_D_PUBLIC_DE_YANKAFISSA",
+      "codeId": "E05",
+      "libelle": "CSU-D PUBLIC de YANKAFISSA (CSU)",
+      "type": "CSU_D",
+      "districtCode": "ODIENNE",
+      "regionCode": "KABADOUGOU",
+      "enqueteurCode": "D10ENQ1"
+    },
+    {
+      "code": "CSR_D_PUBLIC_DE_SARAKORODOUGOU",
+      "codeId": "E06",
+      "libelle": "CSR-D PUBLIC de SARAKORODOUGOU (CSR)",
+      "type": "CSR_D",
+      "districtCode": "ODIENNE",
+      "regionCode": "KABADOUGOU",
+      "enqueteurCode": "D10ENQ5"
+    },
+    {
+      "code": "CSR_DM_PUBLIC_DE_SOKORODOUGOU",
+      "codeId": "E07",
+      "libelle": "CSR-DM PUBLIC de SOKORODOUGOU (CSR)",
+      "type": "CSR_DM",
+      "districtCode": "ODIENNE",
+      "regionCode": "KABADOUGOU",
+      "enqueteurCode": "D10ENQ3"
+    },
+    {
+      "code": "CSR_D_PUBLIC_DE_ZEGBAO",
+      "codeId": "E08",
+      "libelle": "CSR-D PUBLIC de ZEGBAO (CSR)",
+      "type": "CSR_D",
+      "districtCode": "ODIENNE",
+      "regionCode": "KABADOUGOU",
+      "enqueteurCode": "D10ENQ4"
+    },
+    {
+      "code": "CSR_D_PUBLIC_DE_KAHANSO",
+      "codeId": "E09",
+      "libelle": "CSR-D PUBLIC de KAHANSO (CSR)",
+      "type": "CSR_D",
+      "districtCode": "ODIENNE",
+      "regionCode": "KABADOUGOU",
+      "enqueteurCode": "D10ENQ5"
+    },
+    {
+      "code": "CSR_D_PUBLIC_DE_MAMOUROUDOUGOU_S_P_BAKO",
+      "codeId": "E10",
+      "libelle": "CSR-D PUBLIC de MAMOUROUDOUGOU (S/P BAKO) (CSR)",
+      "type": "CSR_D",
+      "districtCode": "ODIENNE",
+      "regionCode": "KABADOUGOU",
+      "enqueteurCode": "D10ENQ3"
+    },
+    {
+      "code": "EPHR_PUBLIC_DE_SAN_PEDRO_NOUVEAU",
+      "codeId": "E01",
+      "libelle": "EPHR PUBLIC de SAN-PEDRO (Nouveau) (EPH (EPHR/EPHD))",
+      "type": "EPHR",
+      "districtCode": "SAN_PEDRO",
+      "regionCode": "SAN_PEDRO",
+      "enqueteurCode": "D11ENQ5"
+    },
+    {
+      "code": "CSU_DM_PUBLIC_DE_DOBA",
+      "codeId": "E02",
+      "libelle": "CSU-DM PUBLIC de DOBA (CSU)",
+      "type": "CSU_DM",
+      "districtCode": "SAN_PEDRO",
+      "regionCode": "SAN_PEDRO",
+      "enqueteurCode": "D11ENQ4"
+    },
+    {
+      "code": "CSUS_PMI_PUBLIC_DE_SAN_PEDRO",
+      "codeId": "E03",
+      "libelle": "CSUS-PMI PUBLIC de SAN-PEDRO (CSU)",
+      "type": "CSUS_PMI",
+      "districtCode": "SAN_PEDRO",
+      "regionCode": "SAN_PEDRO",
+      "enqueteurCode": "D11ENQ5"
+    },
+    {
+      "code": "CSU_DM_PUBLIC_DE_GRAND_BEREBY",
+      "codeId": "E04",
+      "libelle": "CSU-DM PUBLIC de GRAND-BEREBY (CSU)",
+      "type": "CSU_DM",
+      "districtCode": "SAN_PEDRO",
+      "regionCode": "SAN_PEDRO",
+      "enqueteurCode": "D11ENQ2"
+    },
+    {
+      "code": "CSU_DM_PUBLIC_DE_DOGBO",
+      "codeId": "E05",
+      "libelle": "CSU-DM PUBLIC de DOGBO (CSU)",
+      "type": "CSU_DM",
+      "districtCode": "SAN_PEDRO",
+      "regionCode": "SAN_PEDRO",
+      "enqueteurCode": "D11ENQ1"
+    },
+    {
+      "code": "CSR_DM_PUBLIC_DE_NERO_BROUSSE",
+      "codeId": "E06",
+      "libelle": "CSR-DM PUBLIC de NERO BROUSSE (CSR)",
+      "type": "CSR_DM",
+      "districtCode": "SAN_PEDRO",
+      "regionCode": "SAN_PEDRO",
+      "enqueteurCode": "D11ENQ1"
+    },
+    {
+      "code": "CSR_D_PUBLIC_DE_GROBONOUDAN",
+      "codeId": "E07",
+      "libelle": "CSR-D PUBLIC de GROBONOUDAN (CSR)",
+      "type": "CSR_D",
+      "districtCode": "SAN_PEDRO",
+      "regionCode": "SAN_PEDRO",
+      "enqueteurCode": "D11ENQ4"
+    },
+    {
+      "code": "CSR_DM_PUBLIC_DE_GAGNI",
+      "codeId": "E08",
+      "libelle": "CSR-DM PUBLIC de GAGNI (CSR)",
+      "type": "CSR_DM",
+      "districtCode": "SAN_PEDRO",
+      "regionCode": "SAN_PEDRO",
+      "enqueteurCode": "D11ENQ3"
+    },
+    {
+      "code": "CSR_DM_PUBLIC_DE_KLOTOU",
+      "codeId": "E09",
+      "libelle": "CSR-DM PUBLIC de KLOTOU (CSR)",
+      "type": "CSR_DM",
+      "districtCode": "SAN_PEDRO",
+      "regionCode": "SAN_PEDRO",
+      "enqueteurCode": "D11ENQ2"
+    },
+    {
+      "code": "CSR_DM_PUBLIC_DE_HEKE_VILLAGE",
+      "codeId": "E10",
+      "libelle": "CSR-DM PUBLIC de HEKE VILLAGE (CSR)",
+      "type": "CSR_DM",
+      "districtCode": "SAN_PEDRO",
+      "regionCode": "SAN_PEDRO",
+      "enqueteurCode": "D11ENQ3"
+    },
+    {
+      "code": "EPHD_PUBLIC_DE_TIEBISSOU",
+      "codeId": "E01",
+      "libelle": "EPHD PUBLIC de TIEBISSOU (EPH (EPHR/EPHD))",
+      "type": "EPHD",
+      "districtCode": "TIEBISSOU",
+      "regionCode": "BELIER",
+      "enqueteurCode": "D12ENQ5"
+    },
+    {
+      "code": "CSU_DM_PUBLIC_DE_MOLONOU",
+      "codeId": "E02",
+      "libelle": "CSU-DM PUBLIC de MOLONOU (CSU)",
+      "type": "CSU_DM",
+      "districtCode": "TIEBISSOU",
+      "regionCode": "BELIER",
+      "enqueteurCode": "D12ENQ2"
+    },
+    {
+      "code": "CSU_DM_PUBLIC_DE_YAKPABO_SAKASSOU",
+      "codeId": "E03",
+      "libelle": "CSU-DM PUBLIC de YAKPABO-SAKASSOU (CSU)",
+      "type": "CSU_DM",
+      "districtCode": "TIEBISSOU",
+      "regionCode": "BELIER",
+      "enqueteurCode": "D12ENQ1"
+    },
+    {
+      "code": "CSU_DM_PUBLIC_DE_LOMOKANKRO",
+      "codeId": "E04",
+      "libelle": "CSU-DM PUBLIC de LOMOKANKRO (CSU)",
+      "type": "CSU_DM",
+      "districtCode": "TIEBISSOU",
+      "regionCode": "BELIER",
+      "enqueteurCode": "D12ENQ1"
+    },
+    {
+      "code": "CSR_D_PUBLIC_DE_TOTOKRO",
+      "codeId": "E05",
+      "libelle": "CSR-D PUBLIC de TOTOKRO (CSR)",
+      "type": "CSR_D",
+      "districtCode": "TIEBISSOU",
+      "regionCode": "BELIER",
+      "enqueteurCode": "D12ENQ3"
+    },
+    {
+      "code": "CSR_DM_PUBLIC_DE_YADIBIKRO",
+      "codeId": "E06",
+      "libelle": "CSR-DM PUBLIC de YADIBIKRO (CSR)",
+      "type": "CSR_DM",
+      "districtCode": "TIEBISSOU",
+      "regionCode": "BELIER",
+      "enqueteurCode": "D12ENQ2"
+    },
+    {
+      "code": "CSR_DM_PUBLIC_DE_AKOI_NDENOU",
+      "codeId": "E07",
+      "libelle": "CSR-DM PUBLIC de AKOI NDENOU (CSR)",
+      "type": "CSR_DM",
+      "districtCode": "TIEBISSOU",
+      "regionCode": "BELIER",
+      "enqueteurCode": "D12ENQ3"
+    },
+    {
+      "code": "CSR_D_PUBLIC_DE_KONDEYAOKRO",
+      "codeId": "E08",
+      "libelle": "CSR-D PUBLIC de KONDEYAOKRO (CSR)",
+      "type": "CSR_D",
+      "districtCode": "TIEBISSOU",
+      "regionCode": "BELIER",
+      "enqueteurCode": "D12ENQ5"
+    },
+    {
+      "code": "CSR_D_PUBLIC_DE_N_GANGORO_NANANFOUE",
+      "codeId": "E09",
+      "libelle": "CSR-D PUBLIC de N'GANGORO-NANANFOUE (CSR)",
+      "type": "CSR_D",
+      "districtCode": "TIEBISSOU",
+      "regionCode": "BELIER",
+      "enqueteurCode": "D12ENQ4"
+    },
+    {
+      "code": "CSR_D_PUBLIC_DE_TAKI_SALEKRO",
+      "codeId": "E10",
+      "libelle": "CSR-D PUBLIC de TAKI SALEKRO (CSR)",
+      "type": "CSR_D",
+      "districtCode": "TIEBISSOU",
+      "regionCode": "BELIER",
+      "enqueteurCode": "D12ENQ4"
+    }
+  ]
+}

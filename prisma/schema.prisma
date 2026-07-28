@@ -1,0 +1,27 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model CompletudeSnapshot {
+  id                String   @id @default(cuid())
+  dateSnapshot      DateTime // date du jour du snapshot (arrondie à minuit UTC)
+  districtCode      String
+  /// Chaîne vide '' pour un agrégat de niveau district (F01, F07) — un vrai
+  /// NULL casserait la contrainte @@unique (les NULL sont distincts en SQL).
+  etablissementCode String   @default("")
+  formulaireId      String   // "F5" | "F6" | "F7" | "F8" | "F01" | "F02" | "F07"
+  nbAttendu         Int?     // null pour F07 (pas de cible fixe, voir spec 3.7)
+  nbRecu            Int      // valeur brute (peut dépasser nbAttendu en cas de doublon)
+  nbRecuPlafond     Int      @default(0) // min(nbRecu, nbAttendu) — utilisé pour agrégats
+  tauxCompletude    Float?   // nbRecuPlafond / nbAttendu, null si nbAttendu null
+
+  @@unique([dateSnapshot, districtCode, etablissementCode, formulaireId], name: "snapshot_unique")
+  @@index([dateSnapshot])
+  @@index([districtCode, formulaireId])
+}
