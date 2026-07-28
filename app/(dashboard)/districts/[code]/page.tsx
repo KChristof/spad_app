@@ -41,7 +41,7 @@ export default async function DistrictDetailPage({ params }: { params: Promise<{
   const state = await buildDashboardState();
   const series = await serieDistrict(district.code, 30);
 
-  const f07 = state.f07Coherence.find((x) => x.districtCode === district.code);
+  const f07 = state.f07ParDistrict.find((x) => x.districtCode === district.code);
   const f01 = state.f01ParDistrict.find((x) => x.etablissementCode === district.code);
 
   return (
@@ -78,7 +78,7 @@ export default async function DistrictDetailPage({ params }: { params: Promise<{
               <div className="text-muted-foreground">Non renseigné</div>
             )}
             <div className="pt-2 mt-2 border-t space-y-1">
-              <div className="text-xs uppercase text-muted-foreground tracking-wide">F01 — Fiche district</div>
+              <div className="text-xs uppercase text-muted-foreground tracking-wide">RDM — Fiche district</div>
               {!isDeploye('F01') ? (
                 <BadgeNonDeploye />
               ) : f01 ? (
@@ -90,22 +90,25 @@ export default async function DistrictDetailPage({ params }: { params: Promise<{
             </div>
             <div className="pt-2 mt-2 border-t space-y-1">
               <div className="text-xs uppercase text-muted-foreground tracking-wide">
-                F07 — Cohérence revue décès maternels
+                RDM — Grille de revue (F07)
               </div>
               {!isDeploye('F07') ? (
                 <BadgeNonDeploye />
               ) : f07 ? (
                 <div className="text-xs space-y-0.5">
-                  <div>Fiches F07 reçues : <span className="font-medium">{f07.nbF07}</span></div>
-                  <div>Décès notifiés (F01) : {f07.nbDecesRevusDeclaresF01}</div>
-                  <div>Décès revus cumulés (F02) : {f07.nbDecesRevusDeclaresF02}</div>
-                  {f07.ecart > 0 ? (
-                    <div className="text-statut-partiel font-medium mt-1">
-                      Écart : {f07.ecart} revue(s) manquante(s)
-                    </div>
-                  ) : (
-                    <div className="text-statut-plein mt-1">Cohérent</div>
-                  )}
+                  <div className="flex items-center gap-2">
+                    <StatutBadge statut={f07.statut} compact />
+                    <span className="tabular-nums">
+                      {f07.nbRecu} / {f07.cibleMinimum} minimum
+                    </span>
+                  </div>
+                  <div className="text-muted-foreground">
+                    Cible = somme des décès notifiés au SIG (plancher, dépassement autorisé).
+                  </div>
+                  <div className="text-muted-foreground pt-1">
+                    Cohérence déclaratifs · notifiés F01 : {f07.nbDecesRevusDeclaresF01}
+                    {' · '}revus cumulés F02 : {f07.nbDecesRevusDeclaresF02}
+                  </div>
                 </div>
               ) : null}
             </div>
@@ -161,7 +164,7 @@ export default async function DistrictDetailPage({ params }: { params: Promise<{
                 <TableHead>Type</TableHead>
                 <TableHead>Enquêteur</TableHead>
                 {FORMULAIRES.filter((f) => f.categorie === 'enqueteur' || f.id === 'F02').map((f) => (
-                  <TableHead key={f.id} className="text-center">{f.id}</TableHead>
+                  <TableHead key={f.id} className="text-center whitespace-nowrap" title={f.libelle}>{f.libelleCourt}</TableHead>
                 ))}
               </TableRow>
             </TableHeader>
@@ -207,7 +210,7 @@ export default async function DistrictDetailPage({ params }: { params: Promise<{
           <Tendance30j
             series={FORMULAIRES.filter((f) => isDeploye(f.id) && f.id !== 'F07').map((f) => ({
               id: f.id,
-              libelle: f.id,
+              libelle: f.libelleCourt,
               couleur: COULEURS_LIGNES[f.id],
               points: series[f.id],
             }))}

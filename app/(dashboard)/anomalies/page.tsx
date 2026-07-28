@@ -170,9 +170,10 @@ export default async function AnomaliesPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Écarts de cohérence F07 (par district)</CardTitle>
+          <CardTitle>RDM — Grille de revue (F07) par district</CardTitle>
           <CardDescription>
-            F07 n&rsquo;a pas de cible fixe — on compare le nombre de fiches F07 aux décès notifiés/revus déclarés dans F01/F02.
+            Cible = somme des décès maternels notifiés au SIG dans les établissements audités.
+            C&rsquo;est un plancher — dépasser cette valeur est normal.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -181,14 +182,16 @@ export default async function AnomaliesPage() {
               <TableRow>
                 <TableHead>District</TableHead>
                 <TableHead className="text-right">F07 reçues</TableHead>
-                <TableHead className="text-right">Notif. F01</TableHead>
-                <TableHead className="text-right">Revus F02 cumul.</TableHead>
-                <TableHead className="text-right">Écart</TableHead>
+                <TableHead className="text-right">Cible minimum</TableHead>
+                <TableHead className="text-right">Reste</TableHead>
+                <TableHead className="text-right">Notif. F01 (déclar.)</TableHead>
+                <TableHead className="text-right">Revus F02 (déclar. cumul.)</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {getDistricts().map((d) => {
-                const c = state.f07Coherence.find((x) => x.districtCode === d.code);
+                const c = state.f07ParDistrict.find((x) => x.districtCode === d.code);
+                const reste = c ? Math.max(0, c.cibleMinimum - c.nbRecu) : 0;
                 return (
                   <TableRow key={d.code}>
                     <TableCell>
@@ -196,12 +199,13 @@ export default async function AnomaliesPage() {
                         {d.libelle}
                       </Link>
                     </TableCell>
-                    <TableCell className="num-cell text-sm">{c?.nbF07 ?? 0}</TableCell>
-                    <TableCell className="num-cell text-sm">{c?.nbDecesRevusDeclaresF01 ?? 0}</TableCell>
-                    <TableCell className="num-cell text-sm">{c?.nbDecesRevusDeclaresF02 ?? 0}</TableCell>
-                    <TableCell className={`num-cell text-sm ${c && c.ecart > 0 ? 'text-statut-partiel font-medium' : ''}`}>
-                      {c?.ecart ?? 0}
+                    <TableCell className="num-cell text-sm">{c?.nbRecu ?? 0}</TableCell>
+                    <TableCell className="num-cell text-sm">{c?.cibleMinimum ?? 0}</TableCell>
+                    <TableCell className={`num-cell text-sm ${reste > 0 ? 'text-statut-partiel font-medium' : 'text-statut-plein'}`}>
+                      {reste > 0 ? reste : '✓'}
                     </TableCell>
+                    <TableCell className="num-cell text-sm text-muted-foreground">{c?.nbDecesRevusDeclaresF01 ?? 0}</TableCell>
+                    <TableCell className="num-cell text-sm text-muted-foreground">{c?.nbDecesRevusDeclaresF02 ?? 0}</TableCell>
                   </TableRow>
                 );
               })}

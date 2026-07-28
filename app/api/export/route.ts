@@ -7,10 +7,17 @@ import {
   getDistrictByCode,
   getRegionByCode,
 } from '@/lib/referentiel/data';
+import { getNom, getTelephone } from '@/lib/referentiel/contacts';
 import { libelleStatut } from '@/lib/completude/statut';
+import { getFormulaireConfig } from '@/lib/kobo/formulaires';
+import type { FormulaireId } from '@/lib/referentiel/types';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
+
+function libelleFormulaire(id: FormulaireId): string {
+  return getFormulaireConfig(id).libelle;
+}
 
 export async function GET(req: Request) {
   if (!(await estAuthentifie())) {
@@ -21,11 +28,29 @@ export async function GET(req: Request) {
   const url = new URL(req.url);
   const format = (url.searchParams.get('format') ?? 'csv').toLowerCase();
 
-  const rows: Record<string, string | number | null>[] = [];
+  interface Row {
+    region: string;
+    district: string;
+    districtCodeId: string;
+    etablissement: string;
+    etablissementCode: string;
+    type: string;
+    enqueteur_nom: string;
+    telephone: string;
+    formulaire: string;
+    cible: number | null;
+    recu: number;
+    taux_pct: number | null;
+    statut: string;
+    anomalies: string;
+  }
+  const rows: Row[] = [];
+
   for (const c of state.parEtablissement) {
     const etab = getEtablissementByCode(c.etablissementCode);
     const district = etab ? getDistrictByCode(etab.districtCode) : undefined;
     const region = etab ? getRegionByCode(etab.regionCode) : undefined;
+    const enqCode = etab?.enqueteurCode ?? '';
     rows.push({
       region: region?.libelle ?? etab?.regionCode ?? '',
       district: district?.libelle ?? etab?.districtCode ?? '',
@@ -33,8 +58,9 @@ export async function GET(req: Request) {
       etablissement: etab?.libelle ?? c.etablissementCode,
       etablissementCode: c.etablissementCode,
       type: etab?.type ?? '',
-      enqueteur: etab?.enqueteurCode ?? '',
-      formulaire: c.formulaireId,
+      enqueteur_nom: enqCode ? getNom(enqCode) : '',
+      telephone: enqCode ? getTelephone(enqCode) : '',
+      formulaire: libelleFormulaire(c.formulaireId),
       cible: c.nbAttendu,
       recu: c.nbRecu,
       taux_pct: c.taux !== null ? Math.round(c.taux * 1000) / 10 : null,
@@ -42,7 +68,8 @@ export async function GET(req: Request) {
       anomalies: c.anomalies.join(' | '),
     });
   }
-  // Ajouter F01 par district
+
+  // F01 par district (pas d'établissement / enquêteur — c'est le superviseur)
   for (const c of state.f01ParDistrict) {
     const district = getDistrictByCode(c.etablissementCode);
     const region = district ? getRegionByCode(district.regionCode) : undefined;
@@ -53,8 +80,9 @@ export async function GET(req: Request) {
       etablissement: '(niveau district)',
       etablissementCode: '',
       type: '',
-      enqueteur: '',
-      formulaire: 'F01',
+      enqueteur_nom: '',
+      telephone: '',
+      formulaire: libelleFormulaire('F01'),
       cible: c.nbAttendu,
       recu: c.nbRecu,
       taux_pct: c.taux !== null ? Math.round(c.taux * 1000) / 10 : null,
@@ -62,10 +90,12 @@ export async function GET(req: Request) {
       anomalies: c.anomalies.join(' | '),
     });
   }
-  // F07 : cohérence par district (pas de taux)
-  for (const c of state.f07Coherence) {
+
+  // F07 par district — cible plancher, statut = plein si reçu >= cible
+  for (const c of state.f07ParDistrict) {
     const district = getDistrictByCode(c.districtCode);
     const region = district ? getRegionByCode(district.regionCode) : undefined;
+    const taux = c.cibleMinimum > 0 ? Math.round((c.nbRecu / c.cibleMinimum) * 1000) / 10 : null;
     rows.push({
       region: region?.libelle ?? '',
       district: district?.libelle ?? c.districtCode,
@@ -73,13 +103,17 @@ export async function GET(req: Request) {
       etablissement: '(niveau district)',
       etablissementCode: '',
       type: '',
-      enqueteur: '',
-      formulaire: 'F07',
-      cible: null,
-      recu: c.nbF07,
-      taux_pct: null,
-      statut: c.statut === 'ok' ? 'Cohérent' : 'Écart',
-      anomalies: c.ecart > 0 ? `Écart: ${c.ecart} revue(s) manquante(s)` : '',
+      enqueteur_nom: '',
+      telephone: '',
+      formulaire: libelleFormulaire('F07'),
+      cible: c.cibleMinimum,
+      recu: c.nbRecu,
+      taux_pct: taux,
+      statut: libelleStatut(c.statut),
+      anomalies:
+        c.nbRecu < c.cibleMinimum
+          ? `Reste ${c.cibleMinimum - c.nbRecu} revue(s) pour atteindre le plancher.`
+          : '',
     });
   }
 
@@ -98,8 +132,8 @@ export async function GET(req: Request) {
     });
   }
 
-  // CSV — séparateur ; (Excel FR-friendly)
-  const cols = Object.keys(rows[0] ?? {});
+  // CSV — séparateur ; (Excel FR-friendly), BOM UTF-8
+  const cols = Object.keys(rows[0] ?? {}) as (keyof Row)[];
   const escape = (v: unknown) => {
     if (v === null || v === undefined) return '';
     const s = String(v);

@@ -17,7 +17,8 @@ export default async function SuperviseursPage() {
       <div>
         <h1 className="text-xl font-semibold">Superviseurs (12)</h1>
         <p className="text-sm text-muted-foreground">
-          Un superviseur par district. F01 et F02 sont sous leur responsabilité.
+          Un superviseur par district. Les fiches RDM district (F01), RDM établissement (F02) et la
+          grille de revue (F07) sont sous leur responsabilité.
         </p>
       </div>
       <Card>
@@ -31,9 +32,9 @@ export default async function SuperviseursPage() {
                 <TableHead>Superviseur</TableHead>
                 <TableHead>District</TableHead>
                 <TableHead>Code</TableHead>
-                <TableHead className="text-center">F01</TableHead>
-                <TableHead className="text-center">F02 (10 étab.)</TableHead>
-                <TableHead className="text-center">F07 cohérence</TableHead>
+                <TableHead className="text-center">RDM — District</TableHead>
+                <TableHead className="text-center">RDM — Établissement</TableHead>
+                <TableHead className="text-center">RDM — Grille de revue</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -43,7 +44,7 @@ export default async function SuperviseursPage() {
                 const agF02 = state.agregatsDistrict.find(
                   (a) => a.cle === s.districtCode && a.formulaireId === 'F02',
                 );
-                const f07 = state.f07Coherence.find((x) => x.districtCode === s.districtCode);
+                const f07 = state.f07ParDistrict.find((x) => x.districtCode === s.districtCode);
                 return (
                   <TableRow key={s.code}>
                     <TableCell className="text-sm">{s.nom || s.libelleComplet}</TableCell>
@@ -55,13 +56,23 @@ export default async function SuperviseursPage() {
                       {!isDeploye('F01') ? <BadgeNonDeploye /> : f01 ? <StatutBadge statut={f01.statut} taux={f01.taux} compact /> : '—'}
                     </TableCell>
                     <TableCell className="text-center">
-                      {!isDeploye('F02') ? <BadgeNonDeploye /> : agF02 ? <StatutBadge statut={agF02.statut} taux={agF02.taux} compact /> : '—'}
+                      {!isDeploye('F02') ? <BadgeNonDeploye /> : agF02 ? (
+                        <div>
+                          <StatutBadge statut={agF02.statut} taux={agF02.taux} compact />
+                          <div className="text-xs text-muted-foreground mt-0.5 tabular-nums">
+                            {agF02.nbRecuPlafond}/{agF02.nbAttendu} étab.
+                          </div>
+                        </div>
+                      ) : '—'}
                     </TableCell>
                     <TableCell className="text-center">
                       {!isDeploye('F07') ? <BadgeNonDeploye /> : f07 ? (
-                        <span className={f07.ecart > 0 ? 'text-statut-partiel font-medium' : 'text-statut-plein'}>
-                          {f07.ecart > 0 ? `−${f07.ecart} rev.` : 'OK'}
-                        </span>
+                        <div>
+                          <StatutBadge statut={f07.statut} compact />
+                          <div className="text-xs text-muted-foreground mt-0.5 tabular-nums">
+                            {f07.nbRecu} / {f07.cibleMinimum} min.
+                          </div>
+                        </div>
                       ) : '—'}
                     </TableCell>
                   </TableRow>

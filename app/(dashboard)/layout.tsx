@@ -2,12 +2,14 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { estAuthentifie } from '@/lib/auth/session';
 import { LogoutButton } from './logout-button';
+import { LogosHeader } from '@/components/layout/logos-header';
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
   if (!(await estAuthentifie())) redirect('/login');
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
+      <LogosHeader />
       <header className="border-b bg-card">
         <div className="container flex flex-wrap items-center justify-between gap-3 py-3">
           <div className="flex items-center gap-6">
@@ -20,6 +22,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
               <Link href="/districts" className="hover:text-foreground">Districts</Link>
               <Link href="/enqueteurs" className="hover:text-foreground">Enquêteurs</Link>
               <Link href="/superviseurs" className="hover:text-foreground">Superviseurs</Link>
+              <Link href="/graphiques" className="hover:text-foreground">Graphiques</Link>
               <Link href="/anomalies" className="hover:text-foreground">Anomalies</Link>
               <Link href="/export" className="hover:text-foreground">Export</Link>
             </nav>
@@ -29,8 +32,11 @@ export default async function DashboardLayout({ children }: { children: React.Re
       </header>
       <main className="container flex-1 py-6">{children}</main>
       <footer className="border-t bg-card">
-        <div className="container py-3 text-xs text-muted-foreground">
-          Direction de l&rsquo;Information Sanitaire — Ministère de la Santé de Côte d&rsquo;Ivoire · SPAD V1
+        <div className="container py-3 flex flex-wrap items-center justify-between gap-2 text-xs text-muted-foreground">
+          <span>
+            Direction de l&rsquo;Information Sanitaire — Ministère de la Santé de Côte d&rsquo;Ivoire · SPAD V1
+          </span>
+          <span className="italic">Conçu par 2keycee</span>
         </div>
       </footer>
     </div>

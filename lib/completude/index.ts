@@ -14,7 +14,7 @@ import type {
   CompletudeEtablissement,
   CompletudeF6Detail,
 } from './types';
-import { determinerStatut } from './statut';
+import { determinerStatut, determinerStatutF07 } from './statut';
 import { getField, getFieldString } from '@/lib/kobo/fields';
 
 /** Trouve le code établissement dans une soumission — ordre de préférence.
@@ -228,15 +228,24 @@ export function completudeF8(
 }
 
 // ---------------------------------------------------------------------------
-// F02 — 1 fiche par établissement, avec contrôle F02_ID_ORDRE__1 dans le district
+// F02 — SEULS les établissements ayant notifié ≥1 décès maternel au SIG
+// sont concernés. Les autres passent en statut « Non concerné » (gris,
+// exclus du dénominateur). Voir spec Affinement §2 + data/rdm-cibles.json.
 // ---------------------------------------------------------------------------
+
+export interface AuditeurF02Info {
+  concerne: boolean;
+  decesNotifies?: number; // renseigné si concerne=true
+  source?: string;        // provenance de la donnée (fichier tirage ou correction manuelle)
+}
 
 export function completudeF02(
   etab: Etablissement,
   soumissions: SoumissionKobo[],
+  audit?: AuditeurF02Info,
 ): CompletudeEtablissement {
-  const CIBLE = 1;
-  // Ici l'établissement se trouve dans F02_01__E OU dans Etablissement_Sanitaire__X
+  // Décompte des soumissions (utile même pour un établissement non concerné,
+  // pour détecter un excès inattendu).
   const s = soumissions.filter(
     (x) => codeEtablissementDeSoumission(x) === etab.code,
   );
@@ -244,8 +253,29 @@ export function completudeF02(
   for (const r of s) uniques.set(String(r._uuid), r);
   const nbRecu = uniques.size;
 
+  // Cas 1 — établissement hors périmètre d'audit (pas de décès notifié)
+  if (!audit || !audit.concerne) {
+    const anomalies: string[] = [];
+    if (nbRecu > 0) {
+      anomalies.push(
+        `Fiche F02 reçue (${nbRecu}) alors que l’établissement n’avait pas de décès notifié — vérifier.`,
+      );
+    }
+    return {
+      etablissementCode: etab.code,
+      formulaireId: 'F02',
+      nbAttendu: null,
+      nbRecu,
+      taux: null,
+      statut: 'nonConcerne',
+      anomalies,
+    };
+  }
+
+  // Cas 2 — établissement concerné : cible = 1
+  const CIBLE = 1;
   const anomalies: string[] = [];
-  if (nbRecu > CIBLE) anomalies.push(`${nbRecu} fiches F02 pour cet établissement.`);
+  if (nbRecu > CIBLE) anomalies.push(`${nbRecu} fiches F02 pour cet établissement (attendu ${CIBLE}).`);
 
   const taux = nbRecu / CIBLE;
   return {
@@ -289,38 +319,48 @@ export function completudeF01ParDistrict(
 }
 
 // ---------------------------------------------------------------------------
-// F07 — pas de cible fixe : indicateur de cohérence uniquement
+// F07 — cible plancher = somme des décès notifiés au SIG dans le district.
+// Voir spec Affinement §2 + data/rdm-cibles.json.
+// Rouge si 0 reçu, orange si 0 < reçu < cible, vert si reçu >= cible.
+// Dépasser la cible est NORMAL (contrairement aux autres formulaires).
 // ---------------------------------------------------------------------------
 
-export function coherenceF07(
+export interface CompletudeF07District {
+  districtCode: string;
+  nbRecu: number;             // nombre de fiches F07 reçues pour le district
+  cibleMinimum: number;       // somme_deces_f07_minimum
+  statut: 'zero' | 'partiel' | 'plein' | 'neutre';
+  // Champs de cohérence conservés à titre indicatif (déclaratifs de F01/F02)
+  nbDecesRevusDeclaresF01: number;
+  nbDecesRevusDeclaresF02: number;
+}
+
+export function completudeF07District(
   districtCode: string,
+  cibleMinimum: number,
   soumissionsF07: SoumissionKobo[],
   soumissionsF01: SoumissionKobo[],
   soumissionsF02: SoumissionKobo[],
-) {
-  const nbF07 = soumissionsF07.filter(
+): CompletudeF07District {
+  const nbRecu = soumissionsF07.filter(
     (x) => codeDistrictDeSoumission(x) === districtCode,
   ).length;
 
-  // Décès notifiés déclarés dans F01 (champ F01_05__1)
   const nbDecesRevusDeclaresF01 = soumissionsF01
     .filter((x) => codeDistrictDeSoumission(x) === districtCode)
     .reduce((acc, x) => acc + toInt(getField(x as Record<string, unknown>, 'F01_05__1')), 0);
 
-  // Décès revus déclarés cumulés dans les F02 du district (F02_09__1)
   const nbDecesRevusDeclaresF02 = soumissionsF02
     .filter((x) => codeDistrictDeSoumission(x) === districtCode)
     .reduce((acc, x) => acc + toInt(getField(x as Record<string, unknown>, 'F02_09__1')), 0);
 
-  const reference = Math.max(nbDecesRevusDeclaresF01, nbDecesRevusDeclaresF02);
-  const ecart = reference - nbF07;
   return {
     districtCode,
-    nbF07,
+    nbRecu,
+    cibleMinimum,
+    statut: determinerStatutF07(nbRecu, cibleMinimum) as CompletudeF07District['statut'],
     nbDecesRevusDeclaresF01,
     nbDecesRevusDeclaresF02,
-    ecart,
-    statut: ecart > 0 ? ('ecart' as const) : ('ok' as const),
   };
 }
 
@@ -338,6 +378,7 @@ export function completudeParEtablissement(
   formulaireId: Exclude<FormulaireId, 'F01' | 'F07'>,
   etab: Etablissement,
   soumissions: SoumissionKobo[],
+  auditF02?: AuditeurF02Info, // requis (ou null) pour F02, ignoré ailleurs
 ): CompletudeEtablissement {
   switch (formulaireId) {
     case 'F5':
@@ -349,7 +390,7 @@ export function completudeParEtablissement(
     case 'F8':
       return completudeF8(etab, soumissions);
     case 'F02':
-      return completudeF02(etab, soumissions);
+      return completudeF02(etab, soumissions, auditF02);
   }
 }
 

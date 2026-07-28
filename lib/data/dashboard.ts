@@ -14,15 +14,21 @@ import {
   getDistricts,
   getEtablissementsDuDistrict,
 } from '@/lib/referentiel/data';
-import type { FormulaireId, Etablissement } from '@/lib/referentiel/types';
+import {
+  etabAuditeF02,
+  cibleF07MinimumDistrict,
+} from '@/lib/referentiel/rdm';
+import type { FormulaireId } from '@/lib/referentiel/types';
 import {
   completudeParEtablissement,
   completudeF01ParDistrict,
-  coherenceF07,
+  completudeF07District,
   anomaliesProfilCollecteur,
+  type CompletudeF07District,
+  type AuditeurF02Info,
 } from '@/lib/completude';
 import { agregerParCle, type AgregatCompletude } from '@/lib/completude/agregations';
-import type { CompletudeEtablissement } from '@/lib/completude/types';
+import type { CompletudeEtablissement, StatutCompletude } from '@/lib/completude/types';
 
 export interface DashboardState {
   genereLe: string; // ISO
@@ -36,11 +42,11 @@ export interface DashboardState {
   parEtablissement: CompletudeEtablissement[];
   /** Complétude F01 par district. */
   f01ParDistrict: CompletudeEtablissement[];
-  /** Cohérence F07 par district. */
-  f07Coherence: ReturnType<typeof coherenceF07>[];
-  /** Agrégats district × formulaire (F5/F6/F7/F8/F02). */
+  /** Complétude F07 par district (cible plancher — voir spec Affinement §2). */
+  f07ParDistrict: CompletudeF07District[];
+  /** Agrégats district × formulaire (F5/F6/F7/F8/F02 + F01 + F07). */
   agregatsDistrict: AgregatCompletude[];
-  /** Agrégats région × formulaire (F5/F6/F7/F8/F02). */
+  /** Agrégats région × formulaire. */
   agregatsRegion: AgregatCompletude[];
   /** Agrégats nationaux par formulaire (les 7). */
   agregatsNational: AgregatCompletude[];
@@ -58,6 +64,14 @@ export async function buildDashboardState(): Promise<DashboardState> {
   return computeDashboardState(donnees);
 }
 
+function statutFromTaux(taux: number | null): StatutCompletude {
+  if (taux === null) return 'neutre';
+  if (taux === 0) return 'zero';
+  if (taux < 1) return 'partiel';
+  if (taux === 1) return 'plein';
+  return 'exces';
+}
+
 export function computeDashboardState(donnees: FormulaireDonnees[]): DashboardState {
   const byId = new Map<FormulaireId, FormulaireDonnees>();
   for (const d of donnees) byId.set(d.id, d);
@@ -66,11 +80,20 @@ export function computeDashboardState(donnees: FormulaireDonnees[]): DashboardSt
   const districts = getDistricts();
 
   // 1. Complétude par (établissement, formulaire) pour F5/F6/F7/F8/F02
+  //    — F02 reçoit un `auditF02` : seuls les étab. ayant notifié un décès
+  //      sont concernés, les autres passent en « Non concerné ».
   const parEtablissement: CompletudeEtablissement[] = [];
   for (const fid of FORMULAIRES_ETAB) {
     const soum = byId.get(fid)?.soumissions ?? [];
     for (const e of etablissements) {
-      parEtablissement.push(completudeParEtablissement(fid, e, soum));
+      let audit: AuditeurF02Info | undefined;
+      if (fid === 'F02') {
+        const info = etabAuditeF02(e.districtCode, e.codeId);
+        audit = info
+          ? { concerne: true, decesNotifies: info.deces_notifies_sig, source: info.source }
+          : { concerne: false };
+      }
+      parEtablissement.push(completudeParEtablissement(fid, e, soum, audit));
     }
   }
 
@@ -78,14 +101,16 @@ export function computeDashboardState(donnees: FormulaireDonnees[]): DashboardSt
   const f01Soum = byId.get('F01')?.soumissions ?? [];
   const f01ParDistrict = districts.map((d) => completudeF01ParDistrict(d.code, f01Soum));
 
-  // 3. F07 cohérence par district
+  // 3. F07 complétude plancher par district
   const f07Soum = byId.get('F07')?.soumissions ?? [];
   const f02Soum = byId.get('F02')?.soumissions ?? [];
-  const f07Coherence = districts.map((d) =>
-    coherenceF07(d.code, f07Soum, f01Soum, f02Soum),
+  const f07ParDistrict = districts.map((d) =>
+    completudeF07District(d.code, cibleF07MinimumDistrict(d.code), f07Soum, f01Soum, f02Soum),
   );
 
   // 4. Agrégats district × formulaire (pour F5/F6/F7/F8/F02)
+  //    Les entrées « Non concerné » (F02 hors périmètre) ont nbAttendu=null →
+  //    naturellement exclues du dénominateur par agregerParCle.
   const agregatsDistrict: AgregatCompletude[] = [];
   for (const fid of FORMULAIRES_ETAB) {
     const parFid = parEtablissement.filter((c) => c.formulaireId === fid);
@@ -108,6 +133,21 @@ export function computeDashboardState(donnees: FormulaireDonnees[]): DashboardSt
       nbEtablissements: 1,
     });
   }
+  // Ajouter F07 (cible plancher — le taux peut dépasser 100 %, on l'affiche
+  //   quand même sans passer en statut « excès »)
+  for (const c of f07ParDistrict) {
+    const taux = c.cibleMinimum > 0 ? c.nbRecu / c.cibleMinimum : null;
+    agregatsDistrict.push({
+      formulaireId: 'F07',
+      cle: c.districtCode,
+      nbAttendu: c.cibleMinimum,
+      nbRecu: c.nbRecu,
+      nbRecuPlafond: c.nbRecu, // pas de plafond pour F07
+      taux,
+      statut: c.statut,
+      nbEtablissements: 1,
+    });
+  }
 
   // 5. Agrégats région × formulaire (somme des districts de la région)
   const agregatsRegion: AgregatCompletude[] = [];
@@ -116,7 +156,7 @@ export function computeDashboardState(donnees: FormulaireDonnees[]): DashboardSt
     const districtsRegion = new Set(
       districts.filter((d) => d.regionCode === rc).map((d) => d.code),
     );
-    for (const fid of [...FORMULAIRES_ETAB, 'F01'] as FormulaireId[]) {
+    for (const fid of [...FORMULAIRES_ETAB, 'F01', 'F07'] as FormulaireId[]) {
       const sousAgregats = agregatsDistrict.filter(
         (a) => a.formulaireId === fid && districtsRegion.has(a.cle),
       );
@@ -124,6 +164,17 @@ export function computeDashboardState(donnees: FormulaireDonnees[]): DashboardSt
       const nbRecuPlafond = sousAgregats.reduce((s, a) => s + a.nbRecuPlafond, 0);
       const nbRecu = sousAgregats.reduce((s, a) => s + a.nbRecu, 0);
       const taux = nbAttendu > 0 ? nbRecuPlafond / nbAttendu : null;
+      // F07 : statut basé sur reçu vs cible plancher, jamais « excès »
+      const statut: StatutCompletude =
+        fid === 'F07'
+          ? nbAttendu === 0
+            ? 'neutre'
+            : nbRecu === 0
+              ? 'zero'
+              : nbRecu < nbAttendu
+                ? 'partiel'
+                : 'plein'
+          : statutFromTaux(taux);
       agregatsRegion.push({
         formulaireId: fid,
         cle: rc,
@@ -131,7 +182,7 @@ export function computeDashboardState(donnees: FormulaireDonnees[]): DashboardSt
         nbRecu,
         nbRecuPlafond,
         taux,
-        statut: taux === null ? 'neutre' : taux === 0 ? 'zero' : taux < 1 ? 'partiel' : taux === 1 ? 'plein' : 'exces',
+        statut,
         nbEtablissements: sousAgregats.reduce((s, a) => s + a.nbEtablissements, 0),
       });
     }
@@ -139,12 +190,22 @@ export function computeDashboardState(donnees: FormulaireDonnees[]): DashboardSt
 
   // 6. Agrégats nationaux
   const agregatsNational: AgregatCompletude[] = [];
-  for (const fid of [...FORMULAIRES_ETAB, 'F01'] as FormulaireId[]) {
+  for (const fid of [...FORMULAIRES_ETAB, 'F01', 'F07'] as FormulaireId[]) {
     const sousAgregats = agregatsDistrict.filter((a) => a.formulaireId === fid);
     const nbAttendu = sousAgregats.reduce((s, a) => s + a.nbAttendu, 0);
     const nbRecuPlafond = sousAgregats.reduce((s, a) => s + a.nbRecuPlafond, 0);
     const nbRecu = sousAgregats.reduce((s, a) => s + a.nbRecu, 0);
     const taux = nbAttendu > 0 ? nbRecuPlafond / nbAttendu : null;
+    const statut: StatutCompletude =
+      fid === 'F07'
+        ? nbAttendu === 0
+          ? 'neutre'
+          : nbRecu === 0
+            ? 'zero'
+            : nbRecu < nbAttendu
+              ? 'partiel'
+              : 'plein'
+        : statutFromTaux(taux);
     agregatsNational.push({
       formulaireId: fid,
       cle: 'NATIONAL',
@@ -152,22 +213,10 @@ export function computeDashboardState(donnees: FormulaireDonnees[]): DashboardSt
       nbRecu,
       nbRecuPlafond,
       taux,
-      statut: taux === null ? 'neutre' : taux === 0 ? 'zero' : taux < 1 ? 'partiel' : taux === 1 ? 'plein' : 'exces',
+      statut,
       nbEtablissements: sousAgregats.reduce((s, a) => s + a.nbEtablissements, 0),
     });
   }
-  // F07: pas d'agrégat classique, on renseigne nbRecu total, nbAttendu null
-  const nbF07 = f07Soum.length;
-  agregatsNational.push({
-    formulaireId: 'F07',
-    cle: 'NATIONAL',
-    nbAttendu: 0,
-    nbRecu: nbF07,
-    nbRecuPlafond: nbF07,
-    taux: null,
-    statut: 'neutre',
-    nbEtablissements: districts.length,
-  });
 
   // 7. Anomalies globales
   const anomProfil =
@@ -185,7 +234,7 @@ export function computeDashboardState(donnees: FormulaireDonnees[]): DashboardSt
     })),
     parEtablissement,
     f01ParDistrict,
-    f07Coherence,
+    f07ParDistrict,
     agregatsDistrict,
     agregatsRegion,
     agregatsNational,
@@ -206,3 +255,5 @@ export function findCompletude(
     (c) => c.etablissementCode === etabCode && c.formulaireId === fid,
   );
 }
+
+export { FORMULAIRES, getFormulaireConfig };

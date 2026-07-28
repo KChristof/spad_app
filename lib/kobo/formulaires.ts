@@ -24,11 +24,16 @@ export interface FormulaireConfig {
   aCibleFixe: boolean;
 }
 
+/**
+ * Libellé affiché partout dans l'UI — la clé interne (F5..F07) reste courte
+ * pour le code, mais l'utilisateur ne voit jamais "F7" à côté de "F07" (trop
+ * ambigus visuellement). Voir /docs section « nommage ».
+ */
 export const FORMULAIRES: readonly FormulaireConfig[] = [
   {
     id: 'F5',
-    libelle: 'Fiche femmes enceintes/allaitantes — tabac',
-    libelleCourt: 'F5 (Tabac femmes)',
+    libelle: 'Tabac — Femmes enceintes/allaitantes',
+    libelleCourt: 'Tabac — Femmes',
     idString: '5_PNLTA_SPAD_Fiche_Femmes_Enceintes_Allaitantes',
     categorie: 'enqueteur',
     envVarAssetUid: 'KOBO_ASSET_UID_F5',
@@ -38,8 +43,8 @@ export const FORMULAIRES: readonly FormulaireConfig[] = [
   },
   {
     id: 'F6',
-    libelle: 'Fiche CAP personnel de santé — tabac',
-    libelleCourt: 'F6 (Tabac personnel)',
+    libelle: 'Tabac — Personnel de santé (CAP)',
+    libelleCourt: 'Tabac — Personnel',
     idString: '6_PNLTA_SPAD_Fiche_CAP_Personnel_de_Sante',
     categorie: 'enqueteur',
     envVarAssetUid: 'KOBO_ASSET_UID_F6',
@@ -49,8 +54,8 @@ export const FORMULAIRES: readonly FormulaireConfig[] = [
   },
   {
     id: 'F7',
-    libelle: 'Fiche ménage — non-vaccination',
-    libelleCourt: 'F7 (Ménages)',
+    libelle: 'Vaccination — Ménages',
+    libelleCourt: 'Vacc. — Ménages',
     idString: '7_PEV_SPAD_Fiche_Menage_Non_Vaccination',
     categorie: 'enqueteur',
     envVarAssetUid: 'KOBO_ASSET_UID_F7',
@@ -60,8 +65,8 @@ export const FORMULAIRES: readonly FormulaireConfig[] = [
   },
   {
     id: 'F8',
-    libelle: 'Fiche établissement — non-vaccination',
-    libelleCourt: 'F8 (Étab. PEV)',
+    libelle: 'Vaccination — Établissement',
+    libelleCourt: 'Vacc. — Étab.',
     idString: '8_PEV_SPAD_Fiche_Etablissement_Non_Vaccination',
     categorie: 'enqueteur',
     envVarAssetUid: 'KOBO_ASSET_UID_F8',
@@ -71,8 +76,8 @@ export const FORMULAIRES: readonly FormulaireConfig[] = [
   },
   {
     id: 'F01',
-    libelle: 'Fiche district — revue des décès maternels',
-    libelleCourt: 'F01 (District RDM)',
+    libelle: 'RDM — Fiche district',
+    libelleCourt: 'RDM — District',
     idString: 'rdm_f01',
     categorie: 'superviseur',
     envVarAssetUid: 'KOBO_ASSET_UID_F01',
@@ -82,8 +87,8 @@ export const FORMULAIRES: readonly FormulaireConfig[] = [
   },
   {
     id: 'F02',
-    libelle: 'Fiche établissement — revue des décès maternels',
-    libelleCourt: 'F02 (Étab. RDM)',
+    libelle: 'RDM — Fiche établissement',
+    libelleCourt: 'RDM — Étab.',
     idString: 'rdm_f02',
     categorie: 'superviseur',
     envVarAssetUid: 'KOBO_ASSET_UID_F02',
@@ -93,15 +98,23 @@ export const FORMULAIRES: readonly FormulaireConfig[] = [
   },
   {
     id: 'F07',
-    libelle: 'Grille intégrée de revue des décès maternels',
-    libelleCourt: 'F07 (Grille RDM)',
+    libelle: 'RDM — Grille de revue',
+    libelleCourt: 'RDM — Grille',
     idString: 'rdm_f07',
     categorie: 'superviseur',
     envVarAssetUid: 'KOBO_ASSET_UID_F07',
     cibleParEtablissement: null,
     cibleParDistrict: null,
-    aCibleFixe: false, // dépend du nombre de décès réellement revus
+    aCibleFixe: false, // seuil plancher = somme des décès notifiés (rdm-cibles.json)
   },
+];
+
+/** Légende de l'acronyme RDM, à afficher une fois en bas de la vue nationale. */
+export const LEGENDE_ACRONYMES: Array<{ acr: string; libelle: string }> = [
+  { acr: 'RDM', libelle: 'Revue des Décès Maternels' },
+  { acr: 'CAP', libelle: 'Connaissances, Attitudes, Pratiques' },
+  { acr: 'DIS', libelle: 'Direction de l’Information Sanitaire' },
+  { acr: 'UGP', libelle: 'Unité de Gestion du Projet' },
 ];
 
 export function getFormulaireConfig(id: FormulaireId): FormulaireConfig {

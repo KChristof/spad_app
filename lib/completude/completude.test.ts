@@ -5,7 +5,8 @@ import {
   completudeF7,
   completudeF8,
   completudeF01ParDistrict,
-  coherenceF07,
+  completudeF02,
+  completudeF07District,
 } from './index';
 import type { Etablissement, EtablissementType } from '@/lib/referentiel/types';
 import type { SoumissionKobo } from '@/lib/kobo/types';
@@ -238,40 +239,89 @@ describe('completudeF01ParDistrict', () => {
 });
 
 // ---------------------------------------------------------------------------
-// F07 : PAS de cible fixe — cohérence uniquement (spec section 3.7)
+// F02 : nouveau — seuls les établissements ayant notifié ≥1 décès au SIG
+// sont concernés. Les autres passent en « Non concerné » (spec Affinement §2).
 // ---------------------------------------------------------------------------
 
-describe('coherenceF07', () => {
-  it('ecart = 0 quand F07 couvre tous les décès revus déclarés', () => {
-    const f07 = [
-      s({ _uuid: 'a', District_Sanitaire__X: 'D' }),
-      s({ _uuid: 'b', District_Sanitaire__X: 'D' }),
-    ];
-    const f01 = [s({ _uuid: 'x', District_Sanitaire__X: 'D', F01_05__1: 2 })];
-    const f02 = [
-      s({ _uuid: 'y', District_Sanitaire__X: 'D', F02_09__1: 1 }),
-      s({ _uuid: 'z', District_Sanitaire__X: 'D', F02_09__1: 1 }),
-    ];
-    const r = coherenceF07('D', f07, f01, f02);
-    expect(r.nbF07).toBe(2);
-    expect(r.nbDecesRevusDeclaresF01).toBe(2);
-    expect(r.nbDecesRevusDeclaresF02).toBe(2);
-    expect(r.ecart).toBe(0);
-    expect(r.statut).toBe('ok');
+describe('completudeF02 — audit sélectif', () => {
+  it("établissement HORS périmètre d'audit → statut nonConcerne, nbAttendu null", () => {
+    const e = etab({ code: 'CSR_D_X', type: 'CSR_D' });
+    const r = completudeF02(e, [], { concerne: false });
+    expect(r.statut).toBe('nonConcerne');
+    expect(r.nbAttendu).toBeNull();
+    expect(r.taux).toBeNull();
   });
 
-  it('ecart > 0 quand des revues F07 manquent', () => {
-    const f01 = [s({ _uuid: 'x', District_Sanitaire__X: 'D', F01_05__1: 5 })];
-    const f02: SoumissionKobo[] = [];
-    const r = coherenceF07('D', [], f01, f02);
-    expect(r.nbF07).toBe(0);
-    expect(r.ecart).toBe(5);
-    expect(r.statut).toBe('ecart');
+  it("audit undefined équivaut à 'non concerné' (rétrocompatibilité)", () => {
+    const e = etab({ code: 'CSR_D_X', type: 'CSR_D' });
+    const r = completudeF02(e, []);
+    expect(r.statut).toBe('nonConcerne');
   });
 
-  it('ne renvoie JAMAIS un pourcentage de complétude classique', () => {
-    // Contrôle explicite: le résultat ne contient pas de champ `taux`.
-    const r = coherenceF07('D', [], [], []);
-    expect((r as unknown as { taux?: unknown }).taux).toBeUndefined();
+  it("établissement CONCERNÉ + 0 fiche → statut zero, cible 1", () => {
+    const e = etab({ code: 'EPHR_X', type: 'EPHR' });
+    const r = completudeF02(e, [], { concerne: true, decesNotifies: 13 });
+    expect(r.statut).toBe('zero');
+    expect(r.nbAttendu).toBe(1);
+    expect(r.taux).toBe(0);
+  });
+
+  it("établissement CONCERNÉ + 1 fiche → plein", () => {
+    const e = etab({ code: 'EPHR_X', type: 'EPHR' });
+    const subs = [s({ _uuid: 'u1', Etablissement_Sanitaire__X: 'EPHR_X' })];
+    const r = completudeF02(e, subs, { concerne: true, decesNotifies: 13 });
+    expect(r.statut).toBe('plein');
+  });
+
+  it("HORS périmètre mais fiche reçue → anomalie signalée (audit à vérifier)", () => {
+    const e = etab({ code: 'CSR_D_X', type: 'CSR_D' });
+    const subs = [s({ _uuid: 'u1', Etablissement_Sanitaire__X: 'CSR_D_X' })];
+    const r = completudeF02(e, subs, { concerne: false });
+    expect(r.statut).toBe('nonConcerne');
+    expect(r.anomalies.join(' ')).toMatch(/pas de décès notifié|vérifier/i);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// F07 : cible plancher (spec Affinement §2) — jamais de statut « excès »
+// ---------------------------------------------------------------------------
+
+describe('completudeF07District — cible plancher', () => {
+  it('0 fiche pour un district ayant 13 décès notifiés → zero', () => {
+    const r = completudeF07District('ABENGOUROU', 13, [], [], []);
+    expect(r.nbRecu).toBe(0);
+    expect(r.cibleMinimum).toBe(13);
+    expect(r.statut).toBe('zero');
+  });
+
+  it('reçu < cible → partiel', () => {
+    const f07 = Array.from({ length: 8 }, (_, i) =>
+      s({ _uuid: `u${i}`, District_Sanitaire__X: 'ABENGOUROU' }),
+    );
+    const r = completudeF07District('ABENGOUROU', 13, f07, [], []);
+    expect(r.nbRecu).toBe(8);
+    expect(r.statut).toBe('partiel');
+  });
+
+  it('reçu === cible → plein (vert)', () => {
+    const f07 = Array.from({ length: 13 }, (_, i) =>
+      s({ _uuid: `u${i}`, District_Sanitaire__X: 'ABENGOUROU' }),
+    );
+    const r = completudeF07District('ABENGOUROU', 13, f07, [], []);
+    expect(r.statut).toBe('plein');
+  });
+
+  it('reçu > cible → plein (JAMAIS excès — dépasser un plancher est normal)', () => {
+    const f07 = Array.from({ length: 20 }, (_, i) =>
+      s({ _uuid: `u${i}`, District_Sanitaire__X: 'ABENGOUROU' }),
+    );
+    const r = completudeF07District('ABENGOUROU', 13, f07, [], []);
+    expect(r.statut).toBe('plein');
+    expect(r.statut).not.toBe('exces' as never);
+  });
+
+  it('cible = 0 (aucun décès notifié dans le district) → neutre', () => {
+    const r = completudeF07District('X', 0, [], [], []);
+    expect(r.statut).toBe('neutre');
   });
 });

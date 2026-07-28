@@ -1,6 +1,12 @@
 import type { FormulaireId } from '@/lib/referentiel/types';
 
-export type StatutCompletude = 'zero' | 'partiel' | 'plein' | 'exces' | 'neutre';
+export type StatutCompletude =
+  | 'zero'         // rouge — 0 %
+  | 'partiel'      // orange — 1..99 %
+  | 'plein'        // vert — cible atteinte (100 % ou plancher F07 atteint)
+  | 'exces'        // violet — au-delà de la cible (F5/F6/F7/F8 uniquement — jamais pour F07)
+  | 'nonConcerne'  // gris — établissement hors périmètre F02 (aucun décès notifié)
+  | 'neutre';      // gris — formulaire pas encore déployé, cible non applicable
 
 export interface CompletudeF6Detail {
   attendus: string[];       // ex. ['medecin','infirmier','sage_femme_ou_maieuticien']

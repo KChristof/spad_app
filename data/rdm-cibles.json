@@ -1,0 +1,36 @@
+{
+  "note": "Cibles F02/F07 = etablissements ayant notifie au moins 1 deces maternel au SIG (colonne 'SIG - Nombre de Deces maternels' du fichier tirage), pas les 10 etablissements tires. F01 reste fixe a 1/district.",
+  "etablissements_a_auditer": [
+    {"district_code": "ABENGOUROU", "code_id": "E01", "etablissement_label": "EPHR PUBLIC de ABENGOUROU (EPH (EPHR/EPHD))", "deces_notifies_sig": 13, "source": "fichier tirage_10_etsa_par_district_kd_vu.xlsx"},
+    {"district_code": "AGBOVILLE", "code_id": "E01", "etablissement_label": "EPHR PUBLIC de AGBOVILLE (EPH (EPHR/EPHD))", "deces_notifies_sig": 11, "source": "fichier tirage_10_etsa_par_district_kd_vu.xlsx"},
+    {"district_code": "YOPOUGON_OUEST_SONGON", "code_id": "E01", "etablissement_label": "EPHD PUBLIC de YOPOUGON-ATTIE (EPH (EPHR/EPHD))", "deces_notifies_sig": 33, "source": "fichier tirage_10_etsa_par_district_kd_vu.xlsx"},
+    {"district_code": "YOPOUGON_OUEST_SONGON", "code_id": "E05", "etablissement_label": "CSR-D PUBLIC d' AUDOIN (CSU)", "deces_notifies_sig": 1, "source": "fichier tirage_10_etsa_par_district_kd_vu.xlsx"},
+    {"district_code": "BONDOUKOU", "code_id": "E01", "etablissement_label": "EPHR PUBLIC de BONDOUKOU (EPH (EPHR/EPHD))", "deces_notifies_sig": 13, "source": "fichier tirage_10_etsa_par_district_kd_vu.xlsx"},
+    {"district_code": "MANKONO", "code_id": "E01", "etablissement_label": "EPHD PUBLIC de MANKONO (EPH (EPHR/EPHD))", "deces_notifies_sig": 7, "source": "fichier tirage_10_etsa_par_district_kd_vu.xlsx"},
+    {"district_code": "MANKONO", "code_id": "E05", "etablissement_label": "CSU-DM PUBLIC de BOUANDOUGOU (CSU)", "deces_notifies_sig": 1, "source": "fichier tirage_10_etsa_par_district_kd_vu.xlsx"},
+    {"district_code": "BOUAKE_NORD_EST", "code_id": "E01", "etablissement_label": "EPHR PUBLIC de BOUAKE (EPH (EPHR/EPHD))", "deces_notifies_sig": 12, "source": "fichier tirage_10_etsa_par_district_kd_vu.xlsx"},
+    {"district_code": "SINEMATIALI", "code_id": "E01", "etablissement_label": "EPHD PUBLIC de SINEMATIALI (EPH (EPHR/EPHD))", "deces_notifies_sig": 2, "source": "fichier tirage_10_etsa_par_district_kd_vu.xlsx"},
+    {"district_code": "SINEMATIALI", "code_id": "E03", "etablissement_label": "CSU-DM PUBLIC de KAGBOLODOUGOU (CSU)", "deces_notifies_sig": 1, "source": "fichier tirage_10_etsa_par_district_kd_vu.xlsx"},
+    {"district_code": "DALOA", "code_id": "E01", "etablissement_label": "EPHR PUBLIC de DALOA (EPH (EPHR/EPHD))", "deces_notifies_sig": 17, "source": "fichier tirage_10_etsa_par_district_kd_vu.xlsx"},
+    {"district_code": "MAN", "code_id": "E01", "etablissement_label": "EPHR PUBLIC de MAN (EPH (EPHR/EPHD))", "deces_notifies_sig": 6, "source": "fichier tirage_10_etsa_par_district_kd_vu.xlsx"},
+    {"district_code": "MAN", "code_id": "E05", "etablissement_label": "CSU-D PUBLIC Libreville de MAN (CSU)", "deces_notifies_sig": 1, "source": "fichier tirage_10_etsa_par_district_kd_vu.xlsx"},
+    {"district_code": "ODIENNE", "code_id": "E01", "etablissement_label": "EPHR PUBLIC de ODIENNE (EPH (EPHR/EPHD))", "deces_notifies_sig": 21, "source": "fichier tirage_10_etsa_par_district_kd_vu.xlsx"},
+    {"district_code": "SAN_PEDRO", "code_id": "E01", "etablissement_label": "EPHR PUBLIC de SAN-PEDRO (Nouveau) (EPH (EPHR/EPHD))", "deces_notifies_sig": 43, "source": "fichier tirage_10_etsa_par_district_kd_vu.xlsx"},
+    {"district_code": "TIEBISSOU", "code_id": "E01", "etablissement_label": "EPHD PUBLIC de TIEBISSOU (EPH (EPHR/EPHD))", "deces_notifies_sig": 5, "source": "fichier tirage_10_etsa_par_district_kd_vu.xlsx"},
+    {"district_code": "BOUAKE_NORD_EST", "code_id": "E08", "etablissement_label": "CSR-DM PUBLIC de BAMORO (CSR)", "deces_notifies_sig": 1, "source": "correction manuelle signalee par C. Kouakou le 29/07/2026 - absente du fichier tirage (etablissement remplacant CSR-DM PUBLIC de ALLOMANOU dans la feuille Tirage_Bouake Nord-Est, deces non reporte sur la ligne)"}
+  ],
+  "cibles_par_district": [
+    {"district_code": "ABENGOUROU", "nb_etab_f02_attendu": 1, "somme_deces_f07_minimum": 13},
+    {"district_code": "AGBOVILLE", "nb_etab_f02_attendu": 1, "somme_deces_f07_minimum": 11},
+    {"district_code": "YOPOUGON_OUEST_SONGON", "nb_etab_f02_attendu": 2, "somme_deces_f07_minimum": 34},
+    {"district_code": "BONDOUKOU", "nb_etab_f02_attendu": 1, "somme_deces_f07_minimum": 13},
+    {"district_code": "MANKONO", "nb_etab_f02_attendu": 2, "somme_deces_f07_minimum": 8},
+    {"district_code": "BOUAKE_NORD_EST", "nb_etab_f02_attendu": 2, "somme_deces_f07_minimum": 13},
+    {"district_code": "DALOA", "nb_etab_f02_attendu": 1, "somme_deces_f07_minimum": 17},
+    {"district_code": "SINEMATIALI", "nb_etab_f02_attendu": 2, "somme_deces_f07_minimum": 3},
+    {"district_code": "MAN", "nb_etab_f02_attendu": 2, "somme_deces_f07_minimum": 7},
+    {"district_code": "ODIENNE", "nb_etab_f02_attendu": 1, "somme_deces_f07_minimum": 21},
+    {"district_code": "SAN_PEDRO", "nb_etab_f02_attendu": 1, "somme_deces_f07_minimum": 43},
+    {"district_code": "TIEBISSOU", "nb_etab_f02_attendu": 1, "somme_deces_f07_minimum": 5}
+  ]
+}

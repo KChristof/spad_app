@@ -1,0 +1,506 @@
+{
+  "D01ENQ1": {
+    "nom": "HIEN SIÉ ARISTIDE",
+    "telephone": "0777596294",
+    "email": "aristidehien3@gmail.com",
+    "profil": "Enqueteur",
+    "district": "ABENGOUROU"
+  },
+  "D01ENQ2": {
+    "nom": "KOUAME GERARD",
+    "telephone": "0708052035",
+    "email": "kouamegerard82@gmail.com",
+    "profil": "Enqueteur",
+    "district": "ABENGOUROU"
+  },
+  "D01ENQ3": {
+    "nom": "ADONI N'GORAN PACOME",
+    "telephone": "0748450379",
+    "email": "pacomeadoni@gmail.com",
+    "profil": "Enqueteur",
+    "district": "ABENGOUROU"
+  },
+  "D01ENQ4": {
+    "nom": "MEMEL PIERRE LANDRY DONALD",
+    "telephone": "0777255169",
+    "email": "memelpierrelandry@gmail.com",
+    "profil": "Enqueteur",
+    "district": "ABENGOUROU"
+  },
+  "D01ENQ5": {
+    "nom": "KOUAKOU KOUAKOU FLORENTIN",
+    "telephone": "0757860834",
+    "email": "florentinokouakou@gmail.com",
+    "profil": "Enqueteur",
+    "district": "ABENGOUROU"
+  },
+  "D01SUP1": {
+    "nom": "ABOH née AKA Akoua Odile",
+    "telephone": "0140456692",
+    "email": "akaodile457@gmail.com",
+    "profil": "Superviseur",
+    "district": "ABENGOUROU"
+  },
+  "D02ENQ1": {
+    "nom": "ABE ASSEMIAN MELAINE PARFAIT",
+    "telephone": "0101001178",
+    "email": "melaineabe868@gmail.com",
+    "profil": "Enqueteur",
+    "district": "AGBOVILLE"
+  },
+  "D02ENQ2": {
+    "nom": "KOUADIO PIERRE KOUAME",
+    "telephone": "0757885622",
+    "email": "kkouadiokp34@gmail.com",
+    "profil": "Enqueteur",
+    "district": "AGBOVILLE"
+  },
+  "D02ENQ3": {
+    "nom": "AKA JEAN MARCEL ALLOU",
+    "telephone": "0707535754",
+    "email": "akajeanmarcelallou0123@gmail.com",
+    "profil": "Enqueteur",
+    "district": "AGBOVILLE"
+  },
+  "D02ENQ4": {
+    "nom": "OCHO ANICET ARNAUD BIENVENU",
+    "telephone": "0758382579",
+    "email": "ochoanicet43@gmail.com",
+    "profil": "Enqueteur",
+    "district": "AGBOVILLE"
+  },
+  "D02ENQ5": {
+    "nom": "SEGBE HIANNO MARCELLIN",
+    "telephone": "0787984411",
+    "email": "hianno86@gmail.com",
+    "profil": "Enqueteur",
+    "district": "AGBOVILLE"
+  },
+  "D02SUP2": {
+    "nom": "KONAN KOUASSI J.M",
+    "telephone": "0707332559",
+    "email": "jmkouassikonan@gmail.com",
+    "profil": "Superviseur",
+    "district": "AGBOVILLE"
+  },
+  "D03ENQ1": {
+    "nom": "KILANKO AKISSI MAHUGNON SEPHORA",
+    "telephone": "0709939611",
+    "email": "Kilankosephora@gmail.com",
+    "profil": "Enqueteur",
+    "district": "YOPOUGON-OUEST SONGON"
+  },
+  "D03ENQ2": {
+    "nom": "GERMAIN EHOUMAN KAMENAN",
+    "telephone": "0708057223",
+    "email": "oumarkamenan@gmail.com",
+    "profil": "Enqueteur",
+    "district": "YOPOUGON-OUEST SONGON"
+  },
+  "D03ENQ3": {
+    "nom": "Kouassi nssieny marthe aaudrey lucie",
+    "telephone": "0747106340",
+    "email": "dodaukouassi19@gmail.com",
+    "profil": "Enqueteur",
+    "district": "YOPOUGON-OUEST SONGON"
+  },
+  "D03ENQ4": {
+    "nom": "N'GUESSAN NÉE KPON KOUAKEUCLEUE CAROLINE",
+    "telephone": "0707159358",
+    "email": "carolinekpon@gmail.com",
+    "profil": "Enqueteur",
+    "district": "YOPOUGON-OUEST SONGON"
+  },
+  "D03ENQ5": {
+    "nom": "GUEI SOLA MELANIE",
+    "telephone": "0709879874",
+    "email": "melanieguei225@gmail.com",
+    "profil": "Enqueteur",
+    "district": "YOPOUGON-OUEST SONGON"
+  },
+  "D03SUP3": {
+    "nom": "ABONZAN ASSOUAN FRANCK YANNICK",
+    "telephone": "0708960208",
+    "email": "drabonzanyannick@gmail.com",
+    "profil": "Superviseur",
+    "district": "YOPOUGON-OUEST SONGON"
+  },
+  "D04ENQ1": {
+    "nom": "OUATTARA ADJOUMANI KOUAME HAMED",
+    "telephone": "0759864542",
+    "email": "kouameadjoumani004@gmail.com",
+    "profil": "Enqueteur",
+    "district": "BONDOUKOU"
+  },
+  "D04ENQ2": {
+    "nom": "KOSSREU FRANÇOIS",
+    "telephone": "0708401583",
+    "email": "kosfrancois78@gmail.com",
+    "profil": "Enqueteur",
+    "district": "BONDOUKOU"
+  },
+  "D04ENQ3": {
+    "nom": "Oulou Vivien SANKAN",
+    "telephone": "0747185554",
+    "email": "sankanvivien@gmail.com",
+    "profil": "Enqueteur",
+    "district": "BONDOUKOU"
+  },
+  "D04ENQ4": {
+    "nom": "MAHAN BLESSON FREJUS MADOCHE",
+    "telephone": "0779302662",
+    "email": "frejusmahan00009@gmail.com",
+    "profil": "Enqueteur",
+    "district": "BONDOUKOU"
+  },
+  "D04ENQ5": {
+    "nom": "ASSIELOU OI ASSIELOU ADELIC FRANCIS OMER",
+    "telephone": "0789800852",
+    "email": "assieloua@gmail.com",
+    "profil": "Enqueteur",
+    "district": "BONDOUKOU"
+  },
+  "D04SUP4": {
+    "nom": "DIBO N'DRE EMILIENNE",
+    "telephone": "0758397253",
+    "email": "diboemilienne90@gmail.com",
+    "profil": "Superviseur",
+    "district": "BONDOUKOU"
+  },
+  "D05ENQ1": {
+    "nom": "YAO KOUAME TIMOTHEE",
+    "telephone": "0709300583",
+    "email": "timyao225@gmail.com",
+    "profil": "Enqueteur",
+    "district": "MANKONO"
+  },
+  "D05ENQ2": {
+    "nom": "FAHE EMMANNUEL",
+    "telephone": "0709669740",
+    "email": "emmennuelfahe@gmail.com",
+    "profil": "Enqueteur",
+    "district": "MANKONO"
+  },
+  "D05ENQ3": {
+    "nom": "AMANKON AGNIN KOUA PACÔME",
+    "telephone": "0768502873",
+    "email": "tanohherve17@gmail.com",
+    "profil": "Enqueteur",
+    "district": "MANKONO"
+  },
+  "D05ENQ4": {
+    "nom": "GUEU ZEGBE RICHMOND",
+    "telephone": "0140843788",
+    "email": "christange.gzr@gmail.com",
+    "profil": "Enqueteur",
+    "district": "MANKONO"
+  },
+  "D05ENQ5": {
+    "nom": "KESSE EKAZA OUSSENY",
+    "telephone": null,
+    "email": null,
+    "profil": "Enqueteur",
+    "district": "MANKONO"
+  },
+  "D05SUP5": {
+    "nom": "ARRIKO IWOH VICTORINE EPOUSE KOFFI",
+    "telephone": "0707499193",
+    "email": "arrondis oh victorin est mail.com",
+    "profil": "Superviseur",
+    "district": "MANKONO"
+  },
+  "D06ENQ1": {
+    "nom": "Lettoh Zodé Zibo Franck",
+    "telephone": "0747597885",
+    "email": "lettohmanou@gmail.com",
+    "profil": "Enqueteur",
+    "district": "BOUAKE NORD-EST"
+  },
+  "D06ENQ2": {
+    "nom": "Mme DIARRA NÉE COULIBALY TIERGNÉMÉ NAKONGNON",
+    "telephone": "0708425719",
+    "email": "nakocouldia@gmail.com",
+    "profil": "Enqueteur",
+    "district": "BOUAKE NORD-EST"
+  },
+  "D06ENQ3": {
+    "nom": "Sako Bagaoussou",
+    "telephone": "0142218299",
+    "email": "bagaoussousako806@gmail.com",
+    "profil": "Enqueteur",
+    "district": "BOUAKE NORD-EST"
+  },
+  "D06ENQ4": {
+    "nom": "KOUADIO Aya Augustine Epouse KONAN",
+    "telephone": "0151078374",
+    "email": "augustinekouadio57@gmail.com",
+    "profil": "Enqueteur",
+    "district": "BOUAKE NORD-EST"
+  },
+  "D06ENQ5": {
+    "nom": "YEO Dofoungon",
+    "telephone": "0101663072",
+    "email": "dofoungonyeo@yahoo.fr",
+    "profil": "Enqueteur",
+    "district": "BOUAKE NORD-EST"
+  },
+  "D06SUP6": {
+    "nom": "KANE NOUHO ABDOUL KARIM JUNIOR",
+    "telephone": "0759708941",
+    "email": "kanekarim0@gmail.com",
+    "profil": "Superviseur",
+    "district": "BOUAKE NORD-EST"
+  },
+  "D07ENQ1": {
+    "nom": "Egnankou kodjo martial",
+    "telephone": "0707329061",
+    "email": "megnankou.mke@gmail.com",
+    "profil": "Enqueteur",
+    "district": "DALOA"
+  },
+  "D07ENQ2": {
+    "nom": "YEO YENEDJOMANAN",
+    "telephone": "0707716196",
+    "email": "yenedjo@gmail.com",
+    "profil": "Enqueteur",
+    "district": "DALOA"
+  },
+  "D07ENQ3": {
+    "nom": "ASSI EPSE NOUHO EMILIENNE",
+    "telephone": "0707810208",
+    "email": "emyassi22@yahoo.fr",
+    "profil": "Enqueteur",
+    "district": "DALOA"
+  },
+  "D07ENQ4": {
+    "nom": "DAKOURI PIERRE LAZARE",
+    "telephone": "0564216373",
+    "email": "pdakouri@gmail.com",
+    "profil": "Enqueteur",
+    "district": "DALOA"
+  },
+  "D07ENQ5": {
+    "nom": "FANY NEE ZOH MAKANI ANGELE",
+    "telephone": "0778266903",
+    "email": "Zohmakani.a@gmail.com",
+    "profil": "Enqueteur",
+    "district": "DALOA"
+  },
+  "D07SUP7": {
+    "nom": "YAO N’DRI AIMÉ",
+    "telephone": "0505844985",
+    "email": "aimeyao4897@gmail.com",
+    "profil": "Superviseur",
+    "district": "DALOA"
+  },
+  "D08ENQ1": {
+    "nom": "TCHÉRÉGNIMA ASSIATA SILUÉ",
+    "telephone": "0505310235",
+    "email": "siltchass3@gmail.com",
+    "profil": "Enqueteur",
+    "district": "SINEMATIALI"
+  },
+  "D08ENQ2": {
+    "nom": "YAO KOUADJO KAN JEAN STÉPHANE",
+    "telephone": "0708354919",
+    "email": "stephaneyao1@gmail.com",
+    "profil": "Enqueteur",
+    "district": "SINEMATIALI"
+  },
+  "D08ENQ3": {
+    "nom": "KADJA VENANCE",
+    "telephone": "0748514776",
+    "email": "kadjavenance@gmail.com",
+    "profil": "Enqueteur",
+    "district": "SINEMATIALI"
+  },
+  "D08ENQ4": {
+    "nom": "TO BI GBADJE CHARLES",
+    "telephone": "0779184276",
+    "email": "Charlestohbi@gmail.com",
+    "profil": "Enqueteur",
+    "district": "SINEMATIALI"
+  },
+  "D08ENQ5": {
+    "nom": "BOFFOUO ESSY GUY STEPHANE",
+    "telephone": "0777411027",
+    "email": "essyguystephane@gmail.com",
+    "profil": "Enqueteur",
+    "district": "SINEMATIALI"
+  },
+  "D08SUP8": {
+    "nom": "COULIBALY OUNGOUTIO LÉONIE",
+    "telephone": "0708825528",
+    "email": "coulibalyleonie08@gmail.com",
+    "profil": "Superviseur",
+    "district": "SINEMATIALI"
+  },
+  "D09ENQ1": {
+    "nom": "AÏE FABRICE ARISTIDE",
+    "telephone": "0747808190",
+    "email": "fabriceaie@gmail.com",
+    "profil": "Enqueteur",
+    "district": "MAN"
+  },
+  "D09ENQ2": {
+    "nom": "DAHE BIENVENUE MARCELLE",
+    "telephone": "0701635411",
+    "email": "dahebienvenuemarcelle296@gmail.com",
+    "profil": "Enqueteur",
+    "district": "MAN"
+  },
+  "D09ENQ3": {
+    "nom": "FAHÉ ZAÉ KEMOUTINHI ELIAB STÉPHANE",
+    "telephone": "0748739995",
+    "email": "fahestephane2022@gmail.com",
+    "profil": "Enqueteur",
+    "district": "MAN"
+  },
+  "D09ENQ4": {
+    "nom": "NEHO OMER",
+    "telephone": "0758647915",
+    "email": "nehoomer2@gmail.com",
+    "profil": "Enqueteur",
+    "district": "MAN"
+  },
+  "D09ENQ5": {
+    "nom": "TAHOU ALAIN SERGE",
+    "telephone": "0769523477",
+    "email": "tahou410@gmail.com",
+    "profil": "Enqueteur",
+    "district": "MAN"
+  },
+  "D09SUP9": {
+    "nom": "GUE GUY LEOPOLD",
+    "telephone": "0778171687",
+    "email": "gueguyleopold@gmail.com",
+    "profil": "Superviseur",
+    "district": "MAN"
+  },
+  "D10ENQ1": {
+    "nom": "KONE ASSITA",
+    "telephone": "0505648394",
+    "email": "assikone538@gmail.com",
+    "profil": "Enqueteur",
+    "district": "ODIENNE"
+  },
+  "D10ENQ2": {
+    "nom": "Kouassi Ory Sosthene durand",
+    "telephone": "0778376135",
+    "email": "sosthenekouassi9@gmail.com",
+    "profil": "Enqueteur",
+    "district": "ODIENNE"
+  },
+  "D10ENQ3": {
+    "nom": "TRAORE AHMED SEKOU",
+    "telephone": "0778175307",
+    "email": "ahmedsekoutraore@gmail.com",
+    "profil": "Enqueteur",
+    "district": "ODIENNE"
+  },
+  "D10ENQ4": {
+    "nom": "SORO OUMARD",
+    "telephone": "0556361271",
+    "email": "oumardsoro@gmail.com",
+    "profil": "Enqueteur",
+    "district": "ODIENNE"
+  },
+  "D10ENQ5": {
+    "nom": "KOPOIN N’DEPO EUGENE",
+    "telephone": "0566448380",
+    "email": "kopoineugene@gmail.com",
+    "profil": "Enqueteur",
+    "district": "ODIENNE"
+  },
+  "D10SUP10": {
+    "nom": "SAHANDE NEE N'DOYE FATOUMATA",
+    "telephone": "0779335145",
+    "email": "ndoyetimi@gmail.com",
+    "profil": "Superviseur",
+    "district": "ODIENNE"
+  },
+  "D11ENQ1": {
+    "nom": "OUATTARA SIAKA",
+    "telephone": "0779806080",
+    "email": "ouattarasiaka2808@gmail.com",
+    "profil": "Enqueteur",
+    "district": "SAN-PEDRO"
+  },
+  "D11ENQ2": {
+    "nom": "BAKAYOKO YAYA",
+    "telephone": "0748143177",
+    "email": "bakayokoyaya1986@gmail.com",
+    "profil": "Enqueteur",
+    "district": "SAN-PEDRO"
+  },
+  "D11ENQ3": {
+    "nom": "ATTA KOUAME OLIVIER",
+    "telephone": "0584489074",
+    "email": "attakouame85@gmail.com",
+    "profil": "Enqueteur",
+    "district": "SAN-PEDRO"
+  },
+  "D11ENQ4": {
+    "nom": "PALE SAMBE",
+    "telephone": "0757410228",
+    "email": "sambepale2@gmail.com",
+    "profil": "Enqueteur",
+    "district": "SAN-PEDRO"
+  },
+  "D11ENQ5": {
+    "nom": "OULE LOU GOHINAN EDOXIE",
+    "telephone": "0707879833",
+    "email": "Lougohinanedoxie97@gmail.com",
+    "profil": "Enqueteur",
+    "district": "SAN-PEDRO"
+  },
+  "D11SUP11": {
+    "nom": "ASSAMOI AKISSI MARCELLINE ÉPOUSE DIAGOLA",
+    "telephone": "0757152301",
+    "email": "diagolamarcelline@yahoo.fr",
+    "profil": "Superviseur",
+    "district": "SAN-PEDRO"
+  },
+  "D12ENQ1": {
+    "nom": "Yéyé Loba Asther Dervin",
+    "telephone": "0759894658",
+    "email": "astherdervinyeye@gmail.com",
+    "profil": "Enqueteur",
+    "district": "TIEBISSOU"
+  },
+  "D12ENQ2": {
+    "nom": "APPOH KOUAME GUILLAUME BORIS",
+    "telephone": "0757172207",
+    "email": "borisappoh5@gmail.com",
+    "profil": "Enqueteur",
+    "district": "TIEBISSOU"
+  },
+  "D12ENQ3": {
+    "nom": "M'bro Edmond Didier",
+    "telephone": "0707844139",
+    "email": "mbrodidier@gmail.com",
+    "profil": "Enqueteur",
+    "district": "TIEBISSOU"
+  },
+  "D12ENQ4": {
+    "nom": "KOUASSI KOUAME GUY MELAIRE",
+    "telephone": "0757345335",
+    "email": "guymelairekouassi@gmail.com",
+    "profil": "Enqueteur",
+    "district": "TIEBISSOU"
+  },
+  "D12ENQ5": {
+    "nom": "ABLEGUE Franceline nicaise",
+    "telephone": "0709160193",
+    "email": "nicaisechicablegue@gmail.com",
+    "profil": "Enqueteur",
+    "district": "TIEBISSOU"
+  },
+  "D12SUP12": {
+    "nom": "AGNIMEL ANGBRA FABRICE JEAN DONALD",
+    "telephone": "0747760598",
+    "email": "fabriceagnimel18@gmail.com",
+    "profil": "Superviseur",
+    "district": "TIEBISSOU"
+  }
+}

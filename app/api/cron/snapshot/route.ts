@@ -72,17 +72,19 @@ export async function GET(req: Request) {
       tauxCompletude: c.taux,
     });
   }
-  // F07 — nb de fiches par district (pas de cible fixe)
+  // F07 — cible plancher = somme_deces_f07_minimum du district
   if (isDeploye('F07')) {
-    for (const c of state.f07Coherence) {
+    for (const c of state.f07ParDistrict) {
+      const taux = c.cibleMinimum > 0 ? c.nbRecu / c.cibleMinimum : null;
       lignes.push({
         districtCode: c.districtCode,
         etablissementCode: '',
         formulaireId: 'F07',
-        nbAttendu: null,
-        nbRecu: c.nbF07,
-        nbRecuPlafond: c.nbF07,
-        tauxCompletude: null,
+        nbAttendu: c.cibleMinimum,
+        nbRecu: c.nbRecu,
+        // Pas de plafond pour F07 — dépasser le plancher est normal.
+        nbRecuPlafond: c.nbRecu,
+        tauxCompletude: taux,
       });
     }
   }
