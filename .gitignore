@@ -44,3 +44,5 @@ _inspect/
 
 # Tests
 coverage/
+
+.vercel
