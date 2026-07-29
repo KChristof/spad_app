@@ -7,6 +7,8 @@ import {
   completudeF01ParDistrict,
   completudeF02,
   completudeF07District,
+  codeDistrictDeSoumission,
+  codeEtablissementDeSoumission,
 } from './index';
 import type { Etablissement, EtablissementType } from '@/lib/referentiel/types';
 import type { SoumissionKobo } from '@/lib/kobo/types';
@@ -26,6 +28,47 @@ function etab(overrides: Partial<Etablissement> & { type: EtablissementType }): 
 function s(fields: Partial<SoumissionKobo> & { _uuid: string }): SoumissionKobo {
   return { _id: fields._uuid, ...fields } as SoumissionKobo;
 }
+
+// ---------------------------------------------------------------------------
+// Extraction champs district/établissement selon le formulaire
+// ---------------------------------------------------------------------------
+
+describe('codeDistrictDeSoumission — variantes RDM', () => {
+  it('F5/F6/F7/F8 : District_Sanitaire__X (bloc ENTETE_STANDARD/)', () => {
+    const sub = { 'ENTETE_STANDARD/District_Sanitaire__X': 'ABENGOUROU' } as unknown as SoumissionKobo;
+    expect(codeDistrictDeSoumission(sub)).toBe('ABENGOUROU');
+  });
+  it('F01 : F01_01a__X (bloc f01/)', () => {
+    const sub = { 'f01/F01_01a__X': 'ABENGOUROU' } as unknown as SoumissionKobo;
+    expect(codeDistrictDeSoumission(sub)).toBe('ABENGOUROU');
+  });
+  it('F02 : F02_00_district__X (bloc f02/)', () => {
+    const sub = { 'f02/F02_00_district__X': 'BONDOUKOU' } as unknown as SoumissionKobo;
+    expect(codeDistrictDeSoumission(sub)).toBe('BONDOUKOU');
+  });
+  it('F07 : RDM_NOT02__X (bloc f07/f07_s0not/)', () => {
+    const sub = { 'f07/f07_s0not/RDM_NOT02__X': 'DALOA' } as unknown as SoumissionKobo;
+    expect(codeDistrictDeSoumission(sub)).toBe('DALOA');
+  });
+  it('renvoie null si aucun des champs candidats n’est présent', () => {
+    expect(codeDistrictDeSoumission({} as SoumissionKobo)).toBeNull();
+  });
+});
+
+describe('codeEtablissementDeSoumission — variantes RDM', () => {
+  it('F5/F6/F7/F8 : Etablissement_Sanitaire__X', () => {
+    const sub = { 'ENTETE_STANDARD/Etablissement_Sanitaire__X': 'EPHR_X' } as unknown as SoumissionKobo;
+    expect(codeEtablissementDeSoumission(sub)).toBe('EPHR_X');
+  });
+  it('F02 : F02_01__E', () => {
+    const sub = { 'f02/F02_01__E': 'EPHR_PUBLIC_DE_ABENGOUROU' } as unknown as SoumissionKobo;
+    expect(codeEtablissementDeSoumission(sub)).toBe('EPHR_PUBLIC_DE_ABENGOUROU');
+  });
+  it('F07 : RDM_NOT03__X', () => {
+    const sub = { 'f07/f07_s0not/RDM_NOT03__X': 'CSR_D_PUBLIC_X' } as unknown as SoumissionKobo;
+    expect(codeEtablissementDeSoumission(sub)).toBe('CSR_D_PUBLIC_X');
+  });
+});
 
 // ---------------------------------------------------------------------------
 // F5 & F7 : cible fixe 15 par établissement

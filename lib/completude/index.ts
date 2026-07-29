@@ -18,18 +18,46 @@ import { determinerStatut, determinerStatutF07 } from './statut';
 import { getField, getFieldString } from '@/lib/kobo/fields';
 
 /** Trouve le code établissement dans une soumission — ordre de préférence.
- *  Les champs Kobo sont préfixés par leur chemin de groupe (voir lib/kobo/fields.ts). */
+ *  Les champs Kobo sont préfixés par leur chemin de groupe (voir lib/kobo/fields.ts).
+ *  Noms possibles selon le formulaire :
+ *   - F5/F6/F7/F8 : Etablissement_Sanitaire__X  (bloc ENTETE_STANDARD/)
+ *   - F02        : F02_01__E                   (bloc f02/)
+ *   - F07        : RDM_NOT03__X                (bloc f07/f07_s0not/)
+ */
+const CHAMPS_ETABLISSEMENT = [
+  'Etablissement_Sanitaire__X',
+  'F02_01__E',
+  'RDM_NOT03__X',
+];
 export function codeEtablissementDeSoumission(s: SoumissionKobo): string | null {
-  const direct = getFieldString(s as Record<string, unknown>, 'Etablissement_Sanitaire__X');
-  if (direct) return direct;
-  const f02 = getFieldString(s as Record<string, unknown>, 'F02_01__E');
-  if (f02) return f02;
+  const src = s as Record<string, unknown>;
+  for (const c of CHAMPS_ETABLISSEMENT) {
+    const v = getFieldString(src, c);
+    if (v) return v;
+  }
   return null;
 }
 
-/** Trouve le code district dans une soumission. */
+/** Trouve le code district dans une soumission — ordre de préférence.
+ *  Noms possibles selon le formulaire :
+ *   - F5/F6/F7/F8 : District_Sanitaire__X    (bloc ENTETE_STANDARD/)
+ *   - F01        : F01_01a__X                (bloc f01/)
+ *   - F02        : F02_00_district__X        (bloc f02/)
+ *   - F07        : RDM_NOT02__X              (bloc f07/f07_s0not/)
+ */
+const CHAMPS_DISTRICT = [
+  'District_Sanitaire__X',
+  'F01_01a__X',
+  'F02_00_district__X',
+  'RDM_NOT02__X',
+];
 export function codeDistrictDeSoumission(s: SoumissionKobo): string | null {
-  return getFieldString(s as Record<string, unknown>, 'District_Sanitaire__X') ?? null;
+  const src = s as Record<string, unknown>;
+  for (const c of CHAMPS_DISTRICT) {
+    const v = getFieldString(src, c);
+    if (v) return v;
+  }
+  return null;
 }
 
 // ---------------------------------------------------------------------------
