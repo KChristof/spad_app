@@ -1,15 +1,13 @@
 import Image from 'next/image';
-import fs from 'node:fs';
-import path from 'node:path';
 
 /**
  * Bandeau institutionnel : Ministère de la Santé (Côte d'Ivoire),
  * Direction de l'Information Sanitaire, OMS (partenaire technique et financier).
  *
- * Fallback silencieux si un fichier manque dans /public/logos/ : on n'affiche
- * simplement pas le logo concerné (pas d'icône cassée). Vérification faite au
- * runtime serveur — la home étant SSR, c'est fait à chaque requête (coût
- * négligeable, 3 fs.existsSync).
+ * Les 3 fichiers sont versionnés dans /public/logos/ ; sur Vercel ils sont
+ * servis directement par le CDN à /logos/xxx.png. On NE fait plus de
+ * fs.existsSync ici : `public/` n'est pas embarqué dans le bundle serverless
+ * (le check renvoyait toujours `false` en prod → aucun logo affiché).
  */
 
 const LOGOS = [
@@ -31,33 +29,25 @@ const LOGOS = [
 ];
 
 export function LogosHeader() {
-  const dir = path.resolve(process.cwd(), 'public', 'logos');
-  const disponibles = LOGOS.map((l) => ({
-    ...l,
-    exists: fs.existsSync(path.join(dir, l.file)),
-  }));
-
   return (
     <div className="border-b bg-white">
       <div className="container flex flex-wrap items-center justify-between gap-4 py-3">
         <div className="flex items-center gap-6">
-          {disponibles.map((l) =>
-            l.exists ? (
-              <div key={l.file} className="flex items-center gap-2">
-                <Image
-                  src={`/logos/${l.file}`}
-                  alt={l.alt}
-                  width={120}
-                  height={48}
-                  className="h-12 w-auto object-contain"
-                  priority={l.file === 'ministere-sante.png'}
-                />
-                <span className="hidden lg:block text-[10px] uppercase tracking-wide text-muted-foreground max-w-[180px] leading-tight">
-                  {l.label}
-                </span>
-              </div>
-            ) : null,
-          )}
+          {LOGOS.map((l) => (
+            <div key={l.file} className="flex items-center gap-2">
+              <Image
+                src={`/logos/${l.file}`}
+                alt={l.alt}
+                width={120}
+                height={48}
+                className="h-12 w-auto object-contain"
+                priority={l.file === 'ministere-sante.png'}
+              />
+              <span className="hidden lg:block text-[10px] uppercase tracking-wide text-muted-foreground max-w-[180px] leading-tight">
+                {l.label}
+              </span>
+            </div>
+          ))}
         </div>
         <div className="text-right text-xs text-muted-foreground">
           <div className="font-medium text-primary">SPAD 2026 · Phase pilote</div>
