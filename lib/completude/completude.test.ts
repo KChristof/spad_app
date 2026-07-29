@@ -273,12 +273,16 @@ describe('completudeF02 — audit sélectif', () => {
     expect(r.statut).toBe('plein');
   });
 
-  it("HORS périmètre mais fiche reçue → anomalie signalée (audit à vérifier)", () => {
+  it("HORS périmètre mais fiche reçue → statut nonConcerne + nbRecu, sans anomalie de saisie", () => {
+    // Spec Chantier 5.2 : c'est un signal POSITIF (décès découvert sur le
+    // terrain), pas une anomalie. La détection se fait au niveau
+    // buildDashboardState → state.f02HorsListe.
     const e = etab({ code: 'CSR_D_X', type: 'CSR_D' });
     const subs = [s({ _uuid: 'u1', Etablissement_Sanitaire__X: 'CSR_D_X' })];
     const r = completudeF02(e, subs, { concerne: false });
     expect(r.statut).toBe('nonConcerne');
-    expect(r.anomalies.join(' ')).toMatch(/pas de décès notifié|vérifier/i);
+    expect(r.nbRecu).toBe(1);
+    expect(r.anomalies).toEqual([]);
   });
 });
 

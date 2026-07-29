@@ -253,14 +253,12 @@ export function completudeF02(
   for (const r of s) uniques.set(String(r._uuid), r);
   const nbRecu = uniques.size;
 
-  // Cas 1 — établissement hors périmètre d'audit (pas de décès notifié)
+  // Cas 1 — établissement hors périmètre d'audit (pas de décès notifié au SIG)
   if (!audit || !audit.concerne) {
-    const anomalies: string[] = [];
-    if (nbRecu > 0) {
-      anomalies.push(
-        `Fiche F02 reçue (${nbRecu}) alors que l’établissement n’avait pas de décès notifié — vérifier.`,
-      );
-    }
+    // Une fiche F02 reçue sur un tel établissement n'est PAS une anomalie de
+    // saisie : c'est potentiellement un décès découvert sur le terrain, but
+    // même de la RDM (spec Chantier 5.2). On l'expose dans un flag distinct
+    // — la page /anomalies l'affichera dans une section positive dédiée.
     return {
       etablissementCode: etab.code,
       formulaireId: 'F02',
@@ -268,7 +266,7 @@ export function completudeF02(
       nbRecu,
       taux: null,
       statut: 'nonConcerne',
-      anomalies,
+      anomalies: [],
     };
   }
 

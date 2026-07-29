@@ -55,6 +55,17 @@ export interface DashboardState {
     profilCollecteurSuperviseurSurFormEnqueteur: number;
     etablissementsTypeInconnu: string[];
   };
+  /**
+   * F02 « hors liste » — soumissions F02 reçues pour des établissements
+   * qui n'étaient PAS dans la liste initiale d'audit (aucun décès notifié
+   * au SIG). Ce n'est PAS une anomalie de saisie : c'est potentiellement
+   * un décès découvert sur le terrain, but même de la RDM (spec §5.2).
+   */
+  f02HorsListe: Array<{
+    etablissementCode: string;
+    districtCode: string;
+    nbRecu: number;
+  }>;
 }
 
 const FORMULAIRES_ETAB: Exclude<FormulaireId, 'F01' | 'F07'>[] = ['F5', 'F6', 'F7', 'F8', 'F02'];
@@ -224,6 +235,18 @@ export function computeDashboardState(donnees: FormulaireDonnees[]): DashboardSt
       .reduce((s, fid) => s + anomaliesProfilCollecteur(byId.get(fid)?.soumissions ?? [], fid), 0);
   const etabsInconnus = etablissements.filter((e) => e.type === 'INCONNU').map((e) => e.code);
 
+  // F02 hors liste — fiche reçue pour un établissement hors périmètre d'audit
+  const f02HorsListe = parEtablissement
+    .filter((c) => c.formulaireId === 'F02' && c.statut === 'nonConcerne' && c.nbRecu > 0)
+    .map((c) => {
+      const info = etablissements.find((e) => e.code === c.etablissementCode);
+      return {
+        etablissementCode: c.etablissementCode,
+        districtCode: info?.districtCode ?? '',
+        nbRecu: c.nbRecu,
+      };
+    });
+
   return {
     genereLe: new Date().toISOString(),
     formulaires: donnees.map((d) => ({
@@ -242,6 +265,7 @@ export function computeDashboardState(donnees: FormulaireDonnees[]): DashboardSt
       profilCollecteurSuperviseurSurFormEnqueteur: anomProfil,
       etablissementsTypeInconnu: etabsInconnus,
     },
+    f02HorsListe,
   };
 }
 
