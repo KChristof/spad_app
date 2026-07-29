@@ -40,7 +40,8 @@ export function buildGrilleDistrictsRows(
     }
 
     const f07 = state.f07ParDistrict.find((x) => x.districtCode === d.code);
-    if (isDeploye('F07') && f07) statutGlobal = pireStatut(statutGlobal, f07.statut);
+    const f07Deploye = isDeploye('F07');
+    if (f07Deploye && f07) statutGlobal = pireStatut(statutGlobal, f07.statut);
 
     return {
       districtCode: d.code,
@@ -49,6 +50,7 @@ export function buildGrilleDistrictsRows(
       regionCode: d.regionCode,
       regionLibelle: region?.libelle ?? d.regionCode,
       formulaires,
+      f07Deploye,
       f07NbRecu: f07?.nbRecu ?? 0,
       f07Cible: f07?.cibleMinimum ?? 0,
       f07Statut: f07?.statut ?? 'neutre',

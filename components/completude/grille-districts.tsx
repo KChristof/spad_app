@@ -3,13 +3,18 @@
 import Link from 'next/link';
 import { DataTable, type DataTableColumn, type DataTableFilter } from '@/components/ui/data-table';
 import { StatutBadge, BadgeNonDeploye } from './statut-badge';
-import { FORMULAIRES, isDeploye } from '@/lib/kobo/formulaires';
+import { FORMULAIRES } from '@/lib/kobo/formulaires';
 import type { FormulaireId } from '@/lib/referentiel/types';
 import type { StatutCompletude } from '@/lib/completude/types';
 
 /**
  * Grille croisée district × formulaire. Client Component (filtres/tri via
  * DataTable). Les données sont préparées côté serveur puis passées en props.
+ *
+ * NB : n'appelle JAMAIS `isDeploye()` ici — cette fonction lit
+ * `process.env.KOBO_ASSET_UID_*` qui n'existe pas côté client (variables
+ * non préfixées NEXT_PUBLIC_). Le flag `deploye` doit être calculé côté
+ * serveur et passé via les props (`formulaires[fid].deploye` / `f07Deploye`).
  */
 
 export interface DistrictGridRow extends Record<string, unknown> {
@@ -24,6 +29,7 @@ export interface DistrictGridRow extends Record<string, unknown> {
     | undefined
   >;
   // F07 : cible plancher
+  f07Deploye: boolean;
   f07NbRecu: number;
   f07Cible: number;
   f07Statut: StatutCompletude;
@@ -60,7 +66,7 @@ export function GrilleDistricts({
           sortable: true,
           sortValue: (r: DistrictGridRow) => (r.f07Cible > 0 ? r.f07NbRecu / r.f07Cible : null),
           render: (r: DistrictGridRow) => {
-            if (!isDeploye('F07')) return <BadgeNonDeploye />;
+            if (!r.f07Deploye) return <BadgeNonDeploye />;
             if (r.f07Cible === 0) return <span className="text-muted-foreground text-xs">—</span>;
             return (
               <div>
