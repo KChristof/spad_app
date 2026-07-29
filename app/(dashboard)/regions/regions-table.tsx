@@ -26,6 +26,10 @@ const FORM_LABELS: Record<FormulaireId, string> = {
   F07: 'RDM Grille',
 };
 
+// Les Server Components ne peuvent pas importer les exports valeur d'un fichier
+// 'use client' (Next les traite comme des références). La liste ci-dessous
+// est donc dupliquée dans regions/page.tsx — modifier les DEUX si on ajoute
+// une colonne.
 export function RegionsTable({ rows }: { rows: RegionRow[] }) {
   const columns: DataTableColumn<RegionRow>[] = [
     {
@@ -92,4 +96,3 @@ export function RegionsTable({ rows }: { rows: RegionRow[] }) {
   );
 }
 
-export const REGIONS_TABLE_FORMS = FORMS_AFFICHES;

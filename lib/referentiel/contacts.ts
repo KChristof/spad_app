@@ -1,35 +1,27 @@
 import 'server-only';
+import contactsData from '@/data/contacts-enqueteurs.json';
 
 /**
- * Charge `data/contacts-enqueteurs.json` s'il existe (72 entrées : enquêteurs
- * + superviseurs). Absence de fichier / de code enquêteur → renvoie undefined
- * plutôt qu'inventer une valeur.
+ * Charge `data/contacts-enqueteurs.json` (72 entrées : enquêteurs +
+ * superviseurs). Absence de code enquêteur dans le fichier → renvoie
+ * undefined / chaîne vide plutôt qu'inventer une valeur.
  *
  * Format : { "D01ENQ1": { nom, telephone, email, profil, district }, ... }
+ *
+ * NB : import statique ESM (Next 15.5 ne fournit plus `require` dans les
+ * modules serveur). Le fichier étant versionné dans le repo, il est
+ * toujours présent au build.
  */
 
 export interface Contact {
   nom: string;
-  telephone?: string;
-  email?: string;
-  profil: 'Enqueteur' | 'Superviseur';
+  telephone?: string | null;
+  email?: string | null;
+  profil?: string; // 'Enqueteur' | 'Superviseur' — non validé côté type
   district?: string;
 }
 
-// Import statique — Next 15 traite l'absence du fichier au build. On l'a
-// fourni dans le repo, mais s'il est vide/malformé on retombe sur {}.
-// eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-explicit-any
-let raw: Record<string, Contact> = {};
-try {
-  // Import dynamique protégé par un try/catch — pas de plantage au build si absent.
-  // On utilise require pour bénéficier du try, l'import ESM ne peut pas être conditionnel.
-  // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-explicit-any
-  raw = require('@/data/contacts-enqueteurs.json') as Record<string, Contact>;
-} catch {
-  raw = {};
-}
-
-const CONTACTS = raw;
+const CONTACTS = contactsData as unknown as Record<string, Contact>;
 
 export function getContact(code: string): Contact | undefined {
   return CONTACTS[code];
@@ -47,9 +39,11 @@ export function getNom(code: string, fallbackLibelle?: string): string {
 }
 
 export function getTelephone(code: string): string {
-  return CONTACTS[code]?.telephone ?? '';
+  const v = CONTACTS[code]?.telephone;
+  return v ?? '';
 }
 
 export function getEmail(code: string): string {
-  return CONTACTS[code]?.email ?? '';
+  const v = CONTACTS[code]?.email;
+  return v ?? '';
 }

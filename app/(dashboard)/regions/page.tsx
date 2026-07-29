@@ -2,8 +2,13 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { buildDashboardState } from '@/lib/data/dashboard';
 import { getRegions, getDistrictsDeLaRegion } from '@/lib/referentiel/data';
 import { isDeploye } from '@/lib/kobo/formulaires';
+import type { FormulaireId } from '@/lib/referentiel/types';
 import type { StatutCompletude } from '@/lib/completude/types';
-import { RegionsTable, REGIONS_TABLE_FORMS, type RegionRow } from './regions-table';
+import { RegionsTable, type RegionRow } from './regions-table';
+
+// Miroir de FORMS_AFFICHES dans regions-table.tsx — les Server Components
+// ne peuvent pas importer les valeurs runtime d'un fichier 'use client'.
+const FORMS_AFFICHES_SERVER: FormulaireId[] = ['F5', 'F6', 'F7', 'F8', 'F01', 'F02'];
 
 export const dynamic = 'force-dynamic';
 
@@ -20,7 +25,7 @@ export default async function RegionsPage() {
     const districts = getDistrictsDeLaRegion(r.code);
     const formulaires: RegionRow['formulaires'] = {} as RegionRow['formulaires'];
     let statutGlobal: StatutCompletude = 'plein';
-    for (const fid of REGIONS_TABLE_FORMS) {
+    for (const fid of FORMS_AFFICHES_SERVER) {
       if (!isDeploye(fid)) {
         formulaires[fid] = { deploye: false, taux: null, statut: 'neutre' };
         continue;

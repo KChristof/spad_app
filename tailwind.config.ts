@@ -1,8 +1,12 @@
 import type { Config } from 'tailwindcss';
+import animatePlugin from 'tailwindcss-animate';
 
 // Note V1 : pas de thème sombre — la config `darkMode` a été retirée pour
 // éviter du code mort. Réactiver `darkMode: ['class']` + variables --*-dark
 // dans globals.css le jour où on introduira le toggle.
+//
+// Note ESM : Next 15.5 charge la config comme un module ESM ; `require()`
+// n'est plus disponible ici → on utilise l'import statique du plugin.
 const config: Config = {
   content: [
     './app/**/*.{js,ts,jsx,tsx,mdx}',
@@ -60,7 +64,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [animatePlugin],
 };
 
 export default config;
