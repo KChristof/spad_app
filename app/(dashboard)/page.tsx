@@ -2,6 +2,8 @@ import { Suspense } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { JaugeFormulaire } from '@/components/completude/jauge-formulaire';
 import { GrilleDistricts } from '@/components/completude/grille-districts';
+import { buildGrilleDistrictsRows } from '@/lib/data/grille-districts-rows';
+import { getRegions } from '@/lib/referentiel/data';
 import { Tendance30j } from '@/components/completude/tendance-30j';
 import { RafraichirBouton } from '@/components/completude/rafraichir-bouton';
 import { PanneauAlertes, type Alerte } from '@/components/completude/panneau-alertes';
@@ -53,6 +55,33 @@ async function VueNationaleContent() {
       texte: `${etabZero.size} établissement(s) à 0 % sur au moins un formulaire déployé.`,
       href: '/anomalies',
       severite: 'attention',
+    });
+  }
+  // Chantier 5.1 — alerte agrégée pour les excès (doublons potentiels).
+  const excesParFid = new Map<FormulaireId, number>();
+  for (const c of state.parEtablissement) {
+    if (c.statut === 'exces') {
+      excesParFid.set(c.formulaireId, (excesParFid.get(c.formulaireId) ?? 0) + 1);
+    }
+  }
+  const totalExces = Array.from(excesParFid.values()).reduce((s, n) => s + n, 0);
+  if (totalExces > 0) {
+    const detail = Array.from(excesParFid.entries())
+      .map(([fid, n]) => `${FORMULAIRES.find((f) => f.id === fid)?.libelleCourt ?? fid} : ${n}`)
+      .join(' · ');
+    alertes.push({
+      texte: `${totalExces} soumission(s) au-delà de la cible (doublons potentiels) — ${detail}.`,
+      href: '/anomalies',
+      severite: 'attention',
+    });
+  }
+  // Chantier 5.2 — signalement positif F02 hors liste
+  if (state.f02HorsListe.length > 0) {
+    const nb = state.f02HorsListe.length;
+    alertes.push({
+      texte: `${nb} fiche(s) F02 « hors liste » — décès potentiellement découvert(s) sur le terrain. À valider.`,
+      href: '/anomalies',
+      severite: 'info',
     });
   }
   for (const f of state.formulaires) {
@@ -184,7 +213,10 @@ async function VueNationaleContent() {
         <h2 className="mb-3 text-sm font-medium uppercase tracking-wide text-muted-foreground">
           Complétude par district
         </h2>
-        <GrilleDistricts districts={districts} state={state} />
+        <GrilleDistricts
+          rows={buildGrilleDistrictsRows(districts, state)}
+          regionOptions={getRegions().map((r) => ({ code: r.code, libelle: r.libelle }))}
+        />
       </section>
 
       <section className="pt-4 border-t">

@@ -1,35 +1,90 @@
-import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { StatutBadge, BadgeNonDeploye } from '@/components/completude/statut-badge';
-import { getEnqueteurs, getDistrictByCode, getEtablissementsDuEnqueteur } from '@/lib/referentiel/data';
+import { getEnqueteurs, getDistrictByCode, getEtablissementsDuEnqueteur, getDistricts } from '@/lib/referentiel/data';
+import { getTelephone } from '@/lib/referentiel/contacts';
 import { buildDashboardState } from '@/lib/data/dashboard';
-import { FORMULAIRES, isDeploye } from '@/lib/kobo/formulaires';
+import { isDeploye } from '@/lib/kobo/formulaires';
 import type { FormulaireId } from '@/lib/referentiel/types';
+import type { StatutCompletude } from '@/lib/completude/types';
+import { EnqueteursTable, type EnqueteurRow } from './enqueteurs-table';
 
 export const dynamic = 'force-dynamic';
+
+const FORMS: FormulaireId[] = ['F5', 'F6', 'F7', 'F8'];
+
+const PIRE_ORDRE: StatutCompletude[] = ['zero', 'partiel', 'exces', 'nonConcerne', 'neutre', 'plein'];
+function pireStatut(a: StatutCompletude, b: StatutCompletude): StatutCompletude {
+  return PIRE_ORDRE.indexOf(a) < PIRE_ORDRE.indexOf(b) ? a : b;
+}
 
 export default async function EnqueteursPage() {
   const state = await buildDashboardState();
   const enqueteurs = getEnqueteurs();
-  const FORMS_ENQ: FormulaireId[] = ['F5', 'F6', 'F7', 'F8'];
+  const districts = getDistricts();
 
-  const compByEtabFid = new Map<string, Map<FormulaireId, { taux: number | null; nbRecu: number; nbAttendu: number | null }>>();
+  const compByEtabFid = new Map<
+    string,
+    Map<FormulaireId, { taux: number | null; nbRecu: number; nbAttendu: number | null; statut: StatutCompletude }>
+  >();
   for (const c of state.parEtablissement) {
     if (!compByEtabFid.has(c.etablissementCode)) compByEtabFid.set(c.etablissementCode, new Map());
     compByEtabFid.get(c.etablissementCode)!.set(c.formulaireId as FormulaireId, {
       taux: c.taux,
       nbRecu: c.nbRecu,
       nbAttendu: c.nbAttendu,
+      statut: c.statut,
     });
   }
+
+  const rows: EnqueteurRow[] = enqueteurs.map((e) => {
+    const d = getDistrictByCode(e.districtCode);
+    const etabs = getEtablissementsDuEnqueteur(e.code);
+    const formulaires: EnqueteurRow['formulaires'] = {} as EnqueteurRow['formulaires'];
+    let statutGlobal: StatutCompletude = 'plein';
+
+    for (const fid of FORMS) {
+      const deploye = isDeploye(fid);
+      if (!deploye) {
+        formulaires[fid] = { deploye: false, taux: null, statut: 'neutre', nbRecu: 0, nbAttendu: 0 };
+        continue;
+      }
+      let nbRecu = 0;
+      let nbAttendu = 0;
+      for (const etab of etabs) {
+        const c = compByEtabFid.get(etab.code)?.get(fid);
+        if (c && c.nbAttendu !== null) {
+          nbAttendu += c.nbAttendu;
+          nbRecu += Math.min(c.nbRecu, c.nbAttendu);
+        }
+      }
+      const taux = nbAttendu > 0 ? nbRecu / nbAttendu : null;
+      const statut: StatutCompletude =
+        taux === null ? 'neutre' :
+        taux === 0 ? 'zero' :
+        taux < 1 ? 'partiel' :
+        taux === 1 ? 'plein' : 'exces';
+      formulaires[fid] = { deploye: true, taux, statut, nbRecu, nbAttendu };
+      statutGlobal = pireStatut(statutGlobal, statut);
+    }
+    // F01/F02/F07 non applicables — restant à 'plein' si tout est OK, sinon le pire déjà pris.
+
+    return {
+      code: e.code,
+      nom: e.nom || e.libelleComplet,
+      districtCode: e.districtCode,
+      districtLibelle: d?.libelle ?? e.districtCode,
+      telephone: getTelephone(e.code),
+      formulaires,
+      statutGlobal,
+    };
+  });
 
   return (
     <div className="space-y-4">
       <div>
-        <h1 className="text-xl font-semibold">Enquêteurs (60)</h1>
+        <h1 className="text-xl font-semibold">Enquêteurs ({enqueteurs.length})</h1>
         <p className="text-sm text-muted-foreground">
-          Taux agrégé (F5/F6/F7/F8) par enquêteur, sur ses 2 établissements assignés.
+          Taux agrégé (F5/F6/F7/F8) par enquêteur sur ses 2 établissements assignés.
+          Recherche par nom, code, district ou téléphone.
         </p>
       </div>
       <Card>
@@ -37,58 +92,10 @@ export default async function EnqueteursPage() {
           <CardTitle>Liste des enquêteurs</CardTitle>
         </CardHeader>
         <CardContent>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Enquêteur</TableHead>
-                <TableHead>District</TableHead>
-                <TableHead>Code</TableHead>
-                {FORMS_ENQ.map((f) => (
-                  <TableHead key={f} className="text-center">{f}</TableHead>
-                ))}
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {enqueteurs.map((e) => {
-                const d = getDistrictByCode(e.districtCode);
-                const etabs = getEtablissementsDuEnqueteur(e.code);
-                return (
-                  <TableRow key={e.code}>
-                    <TableCell>
-                      <Link href={`/enqueteurs/${e.code}`} className="text-sm text-primary hover:underline">
-                        {e.nom || e.libelleComplet}
-                      </Link>
-                    </TableCell>
-                    <TableCell className="text-xs text-muted-foreground">{d?.libelle ?? e.districtCode}</TableCell>
-                    <TableCell className="text-xs font-mono">{e.code}</TableCell>
-                    {FORMS_ENQ.map((fid) => {
-                      if (!isDeploye(fid)) return <TableCell key={fid} className="text-center"><BadgeNonDeploye /></TableCell>;
-                      let nbRecu = 0;
-                      let nbAttendu = 0;
-                      for (const etab of etabs) {
-                        const c = compByEtabFid.get(etab.code)?.get(fid);
-                        if (c && c.nbAttendu !== null) {
-                          nbAttendu += c.nbAttendu;
-                          nbRecu += Math.min(c.nbRecu, c.nbAttendu);
-                        }
-                      }
-                      const taux = nbAttendu > 0 ? nbRecu / nbAttendu : null;
-                      const statut =
-                        taux === null ? 'neutre' :
-                        taux === 0 ? 'zero' :
-                        taux < 1 ? 'partiel' :
-                        taux === 1 ? 'plein' : 'exces';
-                      return (
-                        <TableCell key={fid} className="text-center">
-                          <StatutBadge statut={statut} taux={taux} compact />
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                );
-              })}
-            </TableBody>
-          </Table>
+          <EnqueteursTable
+            rows={rows}
+            districtOptions={districts.map((d) => ({ code: d.code, libelle: d.libelle }))}
+          />
         </CardContent>
       </Card>
     </div>

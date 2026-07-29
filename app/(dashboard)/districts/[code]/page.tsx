@@ -16,6 +16,14 @@ import { FORMULAIRES, isDeploye } from '@/lib/kobo/formulaires';
 import { serieDistrict } from '@/lib/db/snapshots';
 import { formatInt } from '@/lib/utils';
 import type { FormulaireId } from '@/lib/referentiel/types';
+import type { StatutCompletude } from '@/lib/completude/types';
+import { EtablissementsTable, type EtabDistrictRow } from './etablissements-table';
+
+const PIRE_ORDRE: StatutCompletude[] = ['zero', 'partiel', 'exces', 'nonConcerne', 'neutre', 'plein'];
+function pireStatut(a: StatutCompletude, b: StatutCompletude): StatutCompletude {
+  return PIRE_ORDRE.indexOf(a) < PIRE_ORDRE.indexOf(b) ? a : b;
+}
+const FORMS_ETAB_LIST: FormulaireId[] = ['F5', 'F6', 'F7', 'F8', 'F02'];
 
 export const dynamic = 'force-dynamic';
 
@@ -154,50 +162,40 @@ export default async function DistrictDetailPage({ params }: { params: Promise<{
       <Card>
         <CardHeader>
           <CardTitle>Établissements ({etablissements.length})</CardTitle>
-          <CardDescription>Grille croisée établissement × formulaire.</CardDescription>
+          <CardDescription>Grille croisée établissement × formulaire — filtres et recherche disponibles.</CardDescription>
         </CardHeader>
         <CardContent>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Établissement</TableHead>
-                <TableHead>Type</TableHead>
-                <TableHead>Enquêteur</TableHead>
-                {FORMULAIRES.filter((f) => f.categorie === 'enqueteur' || f.id === 'F02').map((f) => (
-                  <TableHead key={f.id} className="text-center whitespace-nowrap" title={f.libelle}>{f.libelleCourt}</TableHead>
-                ))}
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {etablissements.map((e) => {
-                return (
-                  <TableRow key={e.code}>
-                    <TableCell>
-                      <Link href={`/etablissements/${encodeURIComponent(e.code)}`} className="text-sm text-primary hover:underline">
-                        {e.libelle}
-                      </Link>
-                      <div className="text-xs text-muted-foreground">{e.codeId} · {e.code}</div>
-                    </TableCell>
-                    <TableCell className="text-xs">{e.type}</TableCell>
-                    <TableCell className="text-xs text-muted-foreground">{e.enqueteurCode}</TableCell>
-                    {FORMULAIRES.filter((f) => f.categorie === 'enqueteur' || f.id === 'F02').map((f) => {
-                      if (!isDeploye(f.id)) {
-                        return <TableCell key={f.id} className="text-center"><BadgeNonDeploye /></TableCell>;
-                      }
-                      const c = state.parEtablissement.find(
-                        (x) => x.etablissementCode === e.code && x.formulaireId === f.id,
-                      );
-                      return (
-                        <TableCell key={f.id} className="text-center">
-                          {c ? <StatutBadge statut={c.statut} taux={c.taux} compact /> : '—'}
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
+          <EtablissementsTable
+            rows={etablissements.map<EtabDistrictRow>((e) => {
+              const formulaires = {} as EtabDistrictRow['formulaires'];
+              let statutGlobal: StatutCompletude = 'plein';
+              for (const fid of FORMS_ETAB_LIST) {
+                if (!isDeploye(fid)) {
+                  formulaires[fid] = { deploye: false, taux: null, statut: 'neutre' };
+                  continue;
+                }
+                const c = state.parEtablissement.find(
+                  (x) => x.etablissementCode === e.code && x.formulaireId === fid,
                 );
-              })}
-            </TableBody>
-          </Table>
+                formulaires[fid] = {
+                  deploye: true,
+                  taux: c?.taux ?? null,
+                  statut: c?.statut ?? 'neutre',
+                };
+                if (c?.statut) statutGlobal = pireStatut(statutGlobal, c.statut);
+              }
+              return {
+                code: e.code,
+                codeId: e.codeId,
+                libelle: e.libelle,
+                type: e.type,
+                enqueteurCode: e.enqueteurCode,
+                formulaires,
+                statutGlobal,
+              };
+            })}
+            typeOptions={Array.from(new Set(etablissements.map((e) => e.type))).sort()}
+          />
         </CardContent>
       </Card>
 

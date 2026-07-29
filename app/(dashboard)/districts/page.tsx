@@ -1,7 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { GrilleDistricts } from '@/components/completude/grille-districts';
+import { buildGrilleDistrictsRows } from '@/lib/data/grille-districts-rows';
 import { buildDashboardState } from '@/lib/data/dashboard';
-import { getDistricts } from '@/lib/referentiel/data';
+import { getDistricts, getRegions } from '@/lib/referentiel/data';
 
 export const dynamic = 'force-dynamic';
 
@@ -13,7 +14,7 @@ export default async function DistrictsPage() {
       <div>
         <h1 className="text-xl font-semibold">Vue par district</h1>
         <p className="text-sm text-muted-foreground">
-          Complétude par district × formulaire. Cliquer sur un district pour ouvrir le détail établissements.
+          Complétude par district × formulaire. Recherche, filtres et tri disponibles.
         </p>
       </div>
       <Card>
@@ -21,7 +22,10 @@ export default async function DistrictsPage() {
           <CardTitle>12 districts pilotes</CardTitle>
         </CardHeader>
         <CardContent>
-          <GrilleDistricts districts={districts} state={state} />
+          <GrilleDistricts
+            rows={buildGrilleDistrictsRows(districts, state)}
+            regionOptions={getRegions().map((r) => ({ code: r.code, libelle: r.libelle }))}
+          />
         </CardContent>
       </Card>
     </div>

@@ -1,16 +1,47 @@
-import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { StatutBadge, BadgeNonDeploye } from '@/components/completude/statut-badge';
 import { buildDashboardState } from '@/lib/data/dashboard';
 import { getRegions, getDistrictsDeLaRegion } from '@/lib/referentiel/data';
-import { FORMULAIRES, isDeploye } from '@/lib/kobo/formulaires';
+import { isDeploye } from '@/lib/kobo/formulaires';
+import type { StatutCompletude } from '@/lib/completude/types';
+import { RegionsTable, REGIONS_TABLE_FORMS, type RegionRow } from './regions-table';
 
 export const dynamic = 'force-dynamic';
+
+const PIRE_ORDRE: StatutCompletude[] = ['zero', 'partiel', 'exces', 'nonConcerne', 'neutre', 'plein'];
+function pireStatut(a: StatutCompletude, b: StatutCompletude): StatutCompletude {
+  return PIRE_ORDRE.indexOf(a) < PIRE_ORDRE.indexOf(b) ? a : b;
+}
 
 export default async function RegionsPage() {
   const state = await buildDashboardState();
   const regions = getRegions();
+
+  const rows: RegionRow[] = regions.map((r) => {
+    const districts = getDistrictsDeLaRegion(r.code);
+    const formulaires: RegionRow['formulaires'] = {} as RegionRow['formulaires'];
+    let statutGlobal: StatutCompletude = 'plein';
+    for (const fid of REGIONS_TABLE_FORMS) {
+      if (!isDeploye(fid)) {
+        formulaires[fid] = { deploye: false, taux: null, statut: 'neutre' };
+        continue;
+      }
+      const ag = state.agregatsRegion.find((a) => a.cle === r.code && a.formulaireId === fid);
+      formulaires[fid] = {
+        deploye: true,
+        taux: ag?.taux ?? null,
+        statut: ag?.statut ?? 'neutre',
+      };
+      if (ag?.statut) statutGlobal = pireStatut(statutGlobal, ag.statut);
+    }
+    return {
+      regionCode: r.code,
+      regionLibelle: r.libelle,
+      nbDistricts: districts.length,
+      districtsLabels: districts.map((d) => d.libelle),
+      formulaires,
+      statutGlobal,
+    };
+  });
 
   return (
     <div className="space-y-6">
@@ -20,56 +51,12 @@ export default async function RegionsPage() {
           Complétude agrégée pour chacune des 12 régions sanitaires pilotes.
         </p>
       </div>
-
       <Card>
         <CardHeader>
           <CardTitle>Régions</CardTitle>
         </CardHeader>
         <CardContent>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Région</TableHead>
-                <TableHead className="text-right">Districts</TableHead>
-                {FORMULAIRES.filter((f) => f.id !== 'F07').map((f) => (
-                  <TableHead key={f.id} className="text-center">{f.id}</TableHead>
-                ))}
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {regions.map((r) => {
-                const districts = getDistrictsDeLaRegion(r.code);
-                return (
-                  <TableRow key={r.code}>
-                    <TableCell>
-                      <div className="font-medium">{r.libelle}</div>
-                      <div className="text-xs text-muted-foreground">
-                        {districts.map((d) => (
-                          <Link key={d.code} href={`/districts/${d.code}`} className="mr-2 hover:text-foreground">
-                            {d.libelle}
-                          </Link>
-                        ))}
-                      </div>
-                    </TableCell>
-                    <TableCell className="num-cell">{districts.length}</TableCell>
-                    {FORMULAIRES.filter((f) => f.id !== 'F07').map((f) => {
-                      if (!isDeploye(f.id)) {
-                        return <TableCell key={f.id} className="text-center"><BadgeNonDeploye /></TableCell>;
-                      }
-                      const ag = state.agregatsRegion.find(
-                        (a) => a.cle === r.code && a.formulaireId === f.id,
-                      );
-                      return (
-                        <TableCell key={f.id} className="text-center">
-                          {ag ? <StatutBadge statut={ag.statut} taux={ag.taux} compact /> : '—'}
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                );
-              })}
-            </TableBody>
-          </Table>
+          <RegionsTable rows={rows} />
         </CardContent>
       </Card>
     </div>
