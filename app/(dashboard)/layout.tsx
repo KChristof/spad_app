@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation';
 import { estAuthentifie } from '@/lib/auth/session';
 import { LogoutButton } from './logout-button';
 import { LogosHeader } from '@/components/layout/logos-header';
+import { MobileNav } from '@/components/layout/mobile-nav';
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
   if (!(await estAuthentifie())) redirect('/login');
@@ -10,10 +11,11 @@ export default async function DashboardLayout({ children }: { children: React.Re
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <LogosHeader />
-      <header className="border-b bg-card">
+      <header className="border-b bg-card sticky top-0 z-30">
         <div className="container flex flex-wrap items-center justify-between gap-3 py-3">
-          <div className="flex items-center gap-6">
-            <Link href="/" className="font-semibold text-primary">
+          <div className="flex items-center gap-3 md:gap-6">
+            <MobileNav />
+            <Link href="/" className="font-semibold text-primary text-sm md:text-base">
               SPAD · Dashboard
             </Link>
             <nav className="hidden md:flex items-center gap-4 text-sm text-muted-foreground">
@@ -30,7 +32,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
           <LogoutButton />
         </div>
       </header>
-      <main className="container flex-1 py-6">{children}</main>
+      <main className="container flex-1 py-4 md:py-6">{children}</main>
       <footer className="border-t bg-card">
         <div className="container py-3 flex flex-wrap items-center justify-between gap-2 text-xs text-muted-foreground">
           <span>

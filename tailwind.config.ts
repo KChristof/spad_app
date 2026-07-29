@@ -1,7 +1,9 @@
 import type { Config } from 'tailwindcss';
 
+// Note V1 : pas de thème sombre — la config `darkMode` a été retirée pour
+// éviter du code mort. Réactiver `darkMode: ['class']` + variables --*-dark
+// dans globals.css le jour où on introduira le toggle.
 const config: Config = {
-  darkMode: ['class'],
   content: [
     './app/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
