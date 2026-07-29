@@ -24,7 +24,7 @@ const LOGOS = [
   {
     file: 'oms.png',
     alt: 'Organisation Mondiale de la Santé',
-    label: 'OMS · Partenaire technique et financier',
+    label: 'Organisation Mondiale de la Santé',
   },
 ];
 
