@@ -145,7 +145,9 @@ async function VueNationaleContent() {
               <CountUp value={nbFormsDeployes} />
               <span className="text-muted-foreground text-xl">/7</span>
             </div>
-            <div className="text-xs text-muted-foreground mt-1">Kobo — déploiement en cours</div>
+            <div className="text-xs text-muted-foreground mt-1">
+              {nbFormsDeployes >= 7 ? 'Kobo — tous déployés' : 'Kobo — déploiement en cours'}
+            </div>
           </CardContent>
         </Card>
         <Card className="motion-safe:animate-[fadeInUp_.35s_ease-out_both]" style={{ animationDelay: '180ms' }}>

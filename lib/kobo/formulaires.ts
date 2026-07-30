@@ -114,7 +114,7 @@ export const LEGENDE_ACRONYMES: Array<{ acr: string; libelle: string }> = [
   { acr: 'RDM', libelle: 'Revue des Décès Maternels' },
   { acr: 'CAP', libelle: 'Connaissances, Attitudes, Pratiques' },
   { acr: 'DIS', libelle: 'Direction de l’Information Sanitaire' },
-  { acr: 'UGP', libelle: 'Unité de Gestion du Projet' },
+  { acr: 'UGP', libelle: 'Unité de Gestion du Processus de Production des Données Normalisées' },
 ];
 
 export function getFormulaireConfig(id: FormulaireId): FormulaireConfig {
